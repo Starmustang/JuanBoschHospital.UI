@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { createTheme } from '@mui/material/styles';
 import { useContext, useEffect } from 'react';
+import { CustomizerContext } from '@/app/context/customizerContext';
 import components from './Components';
 import typography from './Typography';
 import { shadows, darkshadows } from './Shadows';
@@ -8,13 +9,11 @@ import { DarkThemeColors } from './DarkThemeColors';
 import { LightThemeColors } from './LightThemeColors';
 import { baseDarkTheme, baselightTheme } from './DefaultColors';
 import * as locales from '@mui/material/locale';
-import { CustomizerContext } from '@/app/context/customizerContext';
 
 export const BuildTheme = (config: any = {}) => {
   const themeOptions = LightThemeColors.find((theme) => theme.name === config.theme);
   const darkthemeOptions = DarkThemeColors.find((theme) => theme.name === config.theme);
   const { activeMode, isBorderRadius } = useContext(CustomizerContext);
-
   const defaultTheme = activeMode === 'dark' ? baseDarkTheme : baselightTheme;
   const defaultShadow = activeMode === 'dark' ? darkshadows : shadows;
   const themeSelect = activeMode === 'dark' ? darkthemeOptions : themeOptions;

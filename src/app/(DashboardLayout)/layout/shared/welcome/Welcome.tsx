@@ -1,9 +1,7 @@
 import * as React from 'react';
-import Alert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
-import Snackbar from '@mui/material/Snackbar'
-
-import { useTheme } from "@mui/material/styles";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Snackbar from '@mui/material/Snackbar';
 
 const Welcome = () => {
   const [open, setOpen] = React.useState(false);
@@ -12,7 +10,7 @@ const Welcome = () => {
     setOpen(true);
   };
 
-  const handleClose = (reason: any) => {
+  const handleClose = (reason:any) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -27,8 +25,6 @@ const Welcome = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const theme = useTheme();
-
   return (
     <React.Fragment>
       <Snackbar
@@ -41,7 +37,7 @@ const Welcome = () => {
           onClose={handleClose}
           severity="info"
           variant="filled"
-          sx={{ width: '100%', color: 'white', background: (theme: any) => theme.palette.primary.main }}
+          sx={{ width: '100%', color: 'white' }}
         >
           <AlertTitle>Welcome To Spike</AlertTitle>
           Easy to customize the Template!!!

@@ -1,5 +1,5 @@
 "use client";
-import Typography from '@mui/material/Typography'
+import Typography from '@mui/material/Typography';
 import PageContainer from "@/app/components/container/PageContainer";
 import DashboardCard from "@/app/components/shared/DashboardCard";
 

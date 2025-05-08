@@ -14,7 +14,6 @@ const MyApp = ({ children }: { children: React.ReactNode }) => {
     const theme = ThemeSettings();
     const { activeDir } = useContext(CustomizerContext);
 
-
     return (
         <>
             <AppRouterCacheProvider options={{ enableCssLayer: true }}>

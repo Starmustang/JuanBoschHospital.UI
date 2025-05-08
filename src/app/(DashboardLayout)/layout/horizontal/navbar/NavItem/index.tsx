@@ -9,8 +9,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { styled, useTheme } from '@mui/material/styles';
-
 import { CustomizerContext } from "@/app/context/customizerContext";
+
 
 type NavGroup = {
   [x: string]: any;
@@ -39,7 +39,14 @@ interface ItemType {
 const NavItem = ({ item, level, pathDirect, onClick }: ItemType) => {
   const { isBorderRadius } = useContext(CustomizerContext);
 
+  // const Icon = item.icon;
   const theme = useTheme();
+  // const itemIcon =
+  //   level > 1 ? (
+  //     <Icon stroke={1.5} size="1rem" />
+  //   ) : (
+  //     <Icon stroke={1.5} size="1.1rem" />
+  //   );
 
   const ListItemStyled2 = styled(ListItemButton)(() => ({
     padding: "5px 10px",
@@ -58,11 +65,12 @@ const NavItem = ({ item, level, pathDirect, onClick }: ItemType) => {
       color:
         level > 1
           ? `${theme.palette.text.secondary} !important`
-          : item.bgcolor + ".main",
+          : `${item.bgcolor}` + ".main",
       "& .MuiTypography-root": {
         fontWeight: level > 1 ? "600 !important" : 400,
       },
-      backgroundColor: level > 1 ? "transparent" : theme.palette.primary.main,
+      backgroundColor: level > 1 ? "transparent" : item.bgcolor + ".light",
+
       "&:hover": {
         backgroundColor: level > 1 ? "" : theme.palette.primary.main,
         color: "white",
@@ -85,10 +93,20 @@ const NavItem = ({ item, level, pathDirect, onClick }: ItemType) => {
     <List component="li" disablePadding key={item.id}>
       <Link href={`${item?.href}`}>
         <ListItemStyled2
+          //{...listItemProps}
           disabled={item?.disabled}
           selected={pathDirect === item?.href}
           onClick={onClick}
         >
+          {/* <ListItemIcon
+          sx={{
+            minWidth: 'auto',
+            p: '3px 0',
+            color: 'inherit',
+          }}
+        >
+          {itemIcon}
+        </ListItemIcon> */}
 
           <ListItemIcon
             sx={{

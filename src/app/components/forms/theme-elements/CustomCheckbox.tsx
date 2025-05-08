@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Checkbox, { CheckboxProps } from '@mui/material/Checkbox';
 
@@ -45,27 +45,24 @@ const BpCheckedIcon = styled(BpIcon)({
   },
 });
 
-// Use React.forwardRef to forward the ref
-const CustomCheckbox = React.forwardRef<HTMLButtonElement, CheckboxProps>((props, ref) => (
-  <Checkbox
-
-    color={props.color || 'default'}
-    checkedIcon={
-      <BpCheckedIcon
-        sx={{
-          backgroundColor: props.color ? `${props.color}.main` : 'primary.main',
-        }}
-      />
-    }
-    icon={<BpIcon />}
-    inputProps={{ 'aria-label': 'Checkbox demo' }}
-    ref={ref}
-    {...props}
-  />
-));
-
-// Set displayName to help with debugging
-CustomCheckbox.displayName = 'CustomCheckbox';
-
+// Inspired by blueprintjs
+function CustomCheckbox(props: CheckboxProps) {
+  return (
+    <Checkbox
+      disableRipple
+      color={props.color ? props.color : 'default'}
+      checkedIcon={
+        <BpCheckedIcon
+          sx={{
+            backgroundColor: props.color ? `${props.color}.main` : 'primary.main',
+          }}
+        />
+      }
+      icon={<BpIcon />}
+      inputProps={{ 'aria-label': 'Checkbox demo' }}
+      {...props}
+    />
+  );
+}
 
 export default CustomCheckbox;

@@ -1,7 +1,6 @@
-'use client'
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { Switch } from '@mui/material';
+import Switch from '@mui/material/Switch';
 
 const CustomSwitch = styled((props: any) => <Switch {...props} />)(({ theme }) => ({
   '&.MuiSwitch-root': {

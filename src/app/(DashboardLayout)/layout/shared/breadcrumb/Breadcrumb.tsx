@@ -1,4 +1,3 @@
-'use client'
 import React from "react";
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Grid from '@mui/material/Grid2';
@@ -24,11 +23,12 @@ const Breadcrumb = ({ subtitle, items, title, children }: BreadCrumbType) => {
       container
       sx={{
         backgroundColor: (theme) => theme.palette.background.paper,
-        borderRadius: (theme: Theme) => theme.shape.borderRadius / 4,
+        borderRadius: (theme: Theme) => theme.shape.borderRadius / 18,
         p: "30px 25px 20px",
         marginBottom: "30px",
         position: "relative",
         overflow: "hidden",
+        // marginTop: lgDown ? 3 : 0
       }}
     >
       <Grid
@@ -67,18 +67,18 @@ const Breadcrumb = ({ subtitle, items, title, children }: BreadCrumbType) => {
         >
           {items
             ? items.map((item) => (
-                <div key={item.title}>
-                  {item.to ? (
-                    <NextLink href={item.to} passHref>
-                      <Typography color="textSecondary">
-                        {item.title}
-                      </Typography>
-                    </NextLink>
-                  ) : (
-                    <Typography color="textPrimary">{item.title}</Typography>
-                  )}
-                </div>
-              ))
+              <div key={item.title}>
+                {item.to ? (
+                  <NextLink href={item.to} passHref>
+                    <Typography color="textSecondary">
+                      {item.title}
+                    </Typography>
+                  </NextLink>
+                ) : (
+                  <Typography color="textPrimary">{item.title}</Typography>
+                )}
+              </div>
+            ))
             : ""}
         </Breadcrumbs>
       </Grid>

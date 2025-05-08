@@ -1,18 +1,17 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
-
 import { usePathname } from "next/navigation";
 
 // mui imports
-import Box from "@mui/material/Box";
-import Collapse from "@mui/material/Collapse";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import { Theme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { styled, useTheme } from "@mui/material/styles";
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import { Theme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { styled, useTheme } from '@mui/material/styles';
 
 // custom imports
 import NavItem from "../NavItem";
@@ -53,10 +52,17 @@ export default function NavCollapse({
   const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
 
 
+  // const Icon = menu?.icon;
   const theme = useTheme();
   const pathname = usePathname();
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  // const menuIcon =
+  //   level > 1 ? (
+  //     <Icon stroke={1.5} size="1.3rem" />
+  //   ) : (
+  //     <Icon stroke={1.5} size="1.5rem" />
+  //   );
 
   const handleClick = () => {
     setOpen(!open);
@@ -109,6 +115,8 @@ export default function NavCollapse({
       borderRadius: "8px",
       marginRight: "8px",
       transition: "all .3s ease-in-out",
+      // color: theme.palette.primary.main,
+      // backgroundColor: theme.palette.primary.light,
     },
     "&:hover": {
       backgroundColor:
@@ -116,6 +124,13 @@ export default function NavCollapse({
           ? theme.palette.primary.light
           : "transparent",
     },
+
+    // color:
+    //   open && level < 2
+    //     ? theme.palette.text.primary
+    //     : `inherit` && level > 1 && open
+    //     ? theme.palette.primary.main
+    //     : theme.palette.text.secondary,
     borderRadius: " 0 24px 24px 0",
   }));
 
@@ -158,6 +173,7 @@ export default function NavCollapse({
             backgroundColor: "transparent",
             ".MuiListItemIcon-root": {
               color: level < 2 ? menu.bgcolor + ".main" : "",
+              //backgroundColor: level < 2 ? menu.bgcolor + ".light" : "",
             },
           },
           "&:hover::before": {
@@ -171,12 +187,15 @@ export default function NavCollapse({
           color:
             open && level < 2
               ? menu.bgcolor + ".main"
-              : (level > 1 && open) // Check the conditions directly
+              : level > 1 && open
                 ? menu.bgcolor + ".main"
-                : 'inherit',
+                : `inherit`,
           ".MuiListItemIcon-root": {
             color: open && level < 2 ? menu.bgcolor + ".main" : "",
           },
+          // "&:before": {
+          //   backgroundColor: menu.bgcolor + ".light",
+          // },
         }}
       >
         <ListItemIcon
@@ -193,8 +212,7 @@ export default function NavCollapse({
               sx={{
                 width: "6px",
                 height: "6px",
-                opacity:
-                  level > 1 && pathWithoutLastPart === menu.href ? 1 : "0.3",
+                opacity: level > 1 && pathWithoutLastPart === menu.href ? 1 : "0.3",
                 backgroundColor:
                   level > 1 && pathWithoutLastPart === menu.href
                     ? `${theme.palette.primary.main}!important`

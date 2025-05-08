@@ -1,7 +1,6 @@
-'use client'
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 
 const CustomSocialButton = styled((props: any) => (
   <Button variant="outlined" size="large" color="inherit" {...props} />

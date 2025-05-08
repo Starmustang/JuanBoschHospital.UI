@@ -1,6 +1,5 @@
-'use client'
 import { styled } from '@mui/material/styles';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 
 const CustomOutlinedButton = styled(Button)(({ theme }) => ({
   border: `1px solid ${theme.palette.grey[100]}`,

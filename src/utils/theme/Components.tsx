@@ -24,12 +24,6 @@ const components: any = (theme: Theme) => {
         "#root": {
           height: "100%",
         },
-        '.ql-container.ql-snow, .ql-toolbar.ql-snow': {
-          border: '0 !important', borderRadius: '7px'
-        },
-        '.ql-editor, .ql-snow *': {
-          fontFamiy: 'inherit !important'
-        },
         "*[dir='rtl'] .welcome-bg": {
           transform: "scaleX(-1)",
         },
@@ -102,22 +96,22 @@ const components: any = (theme: Theme) => {
         },
         "@keyframes heartbit": {
           "0%": {
-            transform: 'scale(0)',
+            transform:  'scale(0)',
             opacity: "0",
           },
-          "25%": {
+          "25%" :{
             transform: 'scale(0.1)',
             opacity: 0.1
           },
-          "50%": {
+          "50%" : {
             transform: 'scale(0.5)',
             opacity: 0.3,
           },
-          "75%": {
+          "75%" :{
             transform: 'scale(0.8)',
             opacity: 0.5,
           },
-          "100%": {
+          "100%" :{
             transform: 'scale(1)',
             opacity: 0,
           }
@@ -125,16 +119,16 @@ const components: any = (theme: Theme) => {
         },
         "@keyframes slide": {
           "0%": {
-            transform: 'translate3d(0px, 0px, 0px)',
+            transform:  'translate3d(0px, 0px, 0px)',
           },
-          "100%": {
+          "100%" :{
             transform: 'translate3d(-100%, 0px, 0px)',
           }
         },
         ".rounded-bars .apexcharts-bar-series.apexcharts-plot-series .apexcharts-series path":
-        {
-          clipPath: "inset(0 0 5% 0 round 20px)",
-        },
+          {
+            clipPath: "inset(0 0 5% 0 round 20px)",
+          },
         ".btn-rounded-circle-40": {
           minWidth: "40px !important",
           padding: "0 !important",
@@ -149,28 +143,6 @@ const components: any = (theme: Theme) => {
           whiteSpace: "normal",
           WebkitLineClamp: 2,
           WebkitBoxOrient: "vertical",
-        },
-        hr: {
-          height: "1px",
-          border: 0,
-          borderTop: `1px solid ${theme.palette.divider}`,
-        },
-        '@keyframes marquee': {
-          '0%': {
-            transform: 'translate3d(0,0,0)',
-          },
-          '100% ': {
-            transform: 'translate3d(-2086px,0,0)'
-          },
-        },
-        '@keyframes marquee2': {
-          '0%': {
-            transform: 'translate3d(-2086px,0,0)'
-          },
-          '100% ': {
-            transform: 'translate3d(0,0,0)',
-
-          },
         },
         ".welcome-bg": {
           position: "absolute",
@@ -189,7 +161,7 @@ const components: any = (theme: Theme) => {
           display: "none",
         },
         ".top-img": {
-          position: "absolute",
+          position: "absolute",  
           right: 0,
           top: 0,
         },
@@ -214,6 +186,7 @@ const components: any = (theme: Theme) => {
     MuiPaper: {
       styleOverrides: {
         root: {
+          // border: `1px solid ${theme.palette.divider}`,
           backgroundImage: 'none',
         },
       },
@@ -242,7 +215,7 @@ const components: any = (theme: Theme) => {
         root: {
           textTransform: 'none',
           boxShadow: 'none',
-          borderRadius: "25px"
+          borderRadius: "25px" 
         },
         text: {
           padding: '5px 15px',
@@ -343,7 +316,6 @@ const components: any = (theme: Theme) => {
           width: "100%",
           padding: "30px",
           backgroundImage: "none",
-          borderRadius: "18px"
         },
       },
     },

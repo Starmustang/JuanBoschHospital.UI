@@ -39,12 +39,14 @@ interface NavCollapseProps {
 
 // FC Component For Dropdown Menu
 const NavCollapse = ({ menu, level, pathWithoutLastPart, pathDirect, hideMenu, onClick }: NavCollapseProps) => {
-
+  // const Icon = menu.icon;
   const theme = useTheme();
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
   const { isBorderRadius } = useContext(CustomizerContext);
 
+  // const menuIcon =
+  //   level > 1 ? <Icon stroke={1.5} size="1rem" /> : <Icon stroke={1.5} size="1.1rem" />;
 
   React.useEffect(() => {
     setOpen(false);
@@ -64,6 +66,7 @@ const NavCollapse = ({ menu, level, pathWithoutLastPart, pathDirect, hideMenu, o
     borderRadius: `${isBorderRadius}px`,
     whiteSpace: 'nowrap',
     color: open || pathname.includes(menu.href) || level < 1 ? menu.bgcolor + ".main" : theme.palette.text.secondary,
+    //backgroundColor: open || pathname.includes(menu.href) ? theme.palette.primary.main : '',
     "&:before": {
       content: '""',
       position: "absolute",
@@ -72,7 +75,7 @@ const NavCollapse = ({ menu, level, pathWithoutLastPart, pathDirect, hideMenu, o
       left: "-1px",
       height: "100%",
       zIndex: "-1",
-      borderRadius: " 9px",
+      borderRadius: " 18px",
       transition: "all .3s ease-in-out",
       width: open && level < 2 ? "100%" : "0",
       backgroundColor: open && level < 2 ? theme.palette.primary.light : "",
@@ -143,6 +146,7 @@ const NavCollapse = ({ menu, level, pathWithoutLastPart, pathDirect, hideMenu, o
             backgroundColor: "transparent",
             ".MuiListItemIcon-root": {
               color: level < 2 ? menu.bgcolor + ".main" : "",
+              //backgroundColor: level < 2 ? menu.bgcolor + ".light" : "",
             },
           },
           "&:hover::before": {
@@ -156,9 +160,9 @@ const NavCollapse = ({ menu, level, pathWithoutLastPart, pathDirect, hideMenu, o
           color:
             open && level < 2
               ? menu.bgcolor + ".main"
-              : (level > 1 && open) // Check the conditions directly
+              : level > 1 && open
                 ? menu.bgcolor + ".main"
-                : 'inherit', // Use a simple string instead of a template literal
+                : `inherit`,
           ".MuiListItemIcon-root": {
             color: open && level < 2 ? menu.bgcolor + ".main" : "",
           },

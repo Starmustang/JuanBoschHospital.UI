@@ -1,7 +1,7 @@
 "use client";
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import { Theme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -14,12 +14,10 @@ import { useContext } from 'react';
 export default function ForgotPassword() {
 
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
-
   const { isBorderRadius } = useContext(CustomizerContext);
 
-
   return (
-    <PageContainer
+    (<PageContainer
       title="Forgot Password Page"
       description="this is Sample page"
     >
@@ -105,7 +103,11 @@ export default function ForgotPassword() {
                   sx={{ mb: 4 }}
                 >
                   {lgUp ? (
-                    <Grid item xs={12} sm={6}>
+                    <Grid
+                      size={{
+                        xs: 12,
+                        sm: 6
+                      }}>
                       <Avatar
                         src="/images/backgrounds/login3-bg.png"
                         alt="login"
@@ -121,7 +123,12 @@ export default function ForgotPassword() {
                   ) : (
                     ""
                   )}
-                  <Grid item xs={12} sm={12} lg={6}>
+                  <Grid
+                    size={{
+                      xs: 12,
+                      sm: 12,
+                      lg: 6
+                    }}>
                     <Box
                       sx={{
                         marginLeft: {
@@ -153,7 +160,6 @@ export default function ForgotPassword() {
           </Box>
         </Box>
       </Box>
-    </PageContainer>
+    </PageContainer>)
   );
 }
-

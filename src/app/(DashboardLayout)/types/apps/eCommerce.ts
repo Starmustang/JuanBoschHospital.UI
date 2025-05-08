@@ -1,6 +1,7 @@
+
 export interface ProductType {
   title: string;
-  price: number | any;
+  price: number;
   discount: number;
   related: boolean;
   salesPrice: number;
@@ -12,7 +13,7 @@ export interface ProductType {
   colors: string[];
   photo: string;
   id: number | string;
-  created: Date | any;
+  created: Date;
   description: string;
 }
 
@@ -21,7 +22,7 @@ export interface ProductFiterType {
   filterbyTitle?: string;
   name?: string;
   sort?: string;
-  icon?: any;
+  icon?:  any;
   devider?: boolean;
 }
 

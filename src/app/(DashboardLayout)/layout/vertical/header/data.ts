@@ -1,4 +1,5 @@
 // Notifications dropdown
+import { IconGridDots } from '@tabler/icons-react';
 
 interface notificationType {
   avatar: string;

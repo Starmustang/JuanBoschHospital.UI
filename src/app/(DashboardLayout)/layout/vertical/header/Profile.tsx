@@ -4,30 +4,31 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Menu from '@mui/material/Menu';
 import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { Icon } from "@iconify/react";
+
 
 import { Stack } from "@mui/system";
 
 const profile = [
   {
-    href: "/apps/user-profile/profile",
+    href: "/",
     title: "My Profile",
     subtitle: "Account Settings",
     icon: <Icon icon="solar:wallet-2-line-duotone" width="20" height="20" />,
     color: "primary",
   },
   {
-    href: "/apps/email",
+    href: "/",
     title: "My Inbox",
     subtitle: "Messages & Emails",
     icon: <Icon icon="solar:shield-minimalistic-line-duotone" width="20" height="20" />,
     color: "success",
   },
   {
-    href: "/apps/kanban",
+    href: "/",
     title: "My Tasks",
     subtitle: "To-do and Daily Tasks",
     icon: <Icon icon="solar:card-2-line-duotone" width="20" height="20" />,
@@ -72,7 +73,7 @@ const Profile = () => {
             height: 45,
           }}
         />
-
+        
         {lgUp ? <Box textAlign="left">
           <Typography variant="h6" color="textPrimary" display="flex" alignItems="center"> Mike Nielsen</Typography>
           <Typography variant="subtitle2" color="textSecondary"> Admin</Typography>
@@ -105,10 +106,10 @@ const Profile = () => {
           />
           <Box>
             <Typography variant="h6" color="textPrimary" fontWeight={600}>
-              Mike Nielsen
+            Mike Nielsen
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              Admin
+            Admin
             </Typography>
             <Typography
               variant="subtitle2"

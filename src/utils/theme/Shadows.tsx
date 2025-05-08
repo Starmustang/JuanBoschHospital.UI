@@ -9,7 +9,7 @@ const shadows = [
   '0 0 1px 0 rgba(0,0,0,0.31), 0 4px 8px -2px rgba(0,0,0,0.25)',
   '0 9px 17.5px rgb(0,0,0,0.05)',
   '0 2px 6px rgba(37,83,185,.1)',
-  '0px 12px 30px -2px rgba(58, 75, 122, 0.14)',
+  '0 0 1px 0 rgba(0,0,0,0.31), 0 7px 12px -4px rgba(0,0,0,0.25)',
   '0 0 1px 0 rgba(0,0,0,0.31), 0 6px 16px -4px rgba(0,0,0,0.25)',
   '0 0 1px 0 rgba(0,0,0,0.31), 0 7px 16px -4px rgba(0,0,0,0.25)',
   '0 0 1px 0 rgba(0,0,0,0.31), 0 8px 18px -8px rgba(0,0,0,0.25)',

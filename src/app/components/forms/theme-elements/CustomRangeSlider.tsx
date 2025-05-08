@@ -1,6 +1,6 @@
-'use client'
+
 import { styled } from '@mui/material/styles';
-import { Slider } from '@mui/material';
+import Slider from '@mui/material/Slider';
 
 const CustomRangeSlider = styled(Slider)(({ theme }) => ({
   '& .MuiSlider-rail': {

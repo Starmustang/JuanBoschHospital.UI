@@ -2,12 +2,12 @@ import React from "react";
 import { CustomizerContextProvider } from "./context/customizerContext";
 import MyApp from "./app";
 import "./global.css";
-import NextTopLoader from 'nextjs-toploader';
+
 
 
 export const metadata = {
-  title: "Spike Main Demo",
-  description: "Spike Main kit",
+  title: "Spike Demo",
+  description: "Spike kit",
 };
 
 export default function RootLayout({
@@ -18,7 +18,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <NextTopLoader color="#0085db" />
         <CustomizerContextProvider>
           <MyApp>{children}</MyApp>
         </CustomizerContextProvider>

@@ -4,12 +4,12 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
-import { CustomizerContext } from '@/app/context/customizerContext';
 
 import { Stack } from '@mui/system';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 
+import { CustomizerContext } from '@/app/context/customizerContext';
 
 const Languages = [
   {
@@ -37,9 +37,9 @@ const Languages = [
 
 const Language = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { isLanguage, setIsLanguage } = useContext(CustomizerContext);
 
   const open = Boolean(anchorEl);
+  const { isLanguage, setIsLanguage } = useContext(CustomizerContext);
 
   const currentLang =
     Languages.find((_lang) => _lang.value === isLanguage) || Languages[1];

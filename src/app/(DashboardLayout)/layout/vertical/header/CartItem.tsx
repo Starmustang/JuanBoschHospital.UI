@@ -1,108 +1,27 @@
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import Link from "next/link";
-import { IconMinus, IconPlus } from "@tabler/icons-react";
-import { ProductContext } from "@/app/context/Ecommercecontext";
-import { useContext } from "react";
+import emptyCart from "/public/images/products/empty-shopping-cart.svg";
+
 import Image from "next/image";
 
 const CartItems = () => {
-  const {
-    cartItems,
-    incrementQuantity,
-    decrementQuantity,
-  } = useContext(ProductContext);
-
-
-
   return (
     <Box px={3}>
-      {cartItems.length > 0 ? (
-        <>
-          {cartItems.map((product: any, index: number) => (
-            <Box key={product.id + index * index}>
-              <Stack direction="row" spacing={2} py={3}>
-                <Avatar
-                  src={product.photo}
-                  alt={product.photo}
-                  sx={{
-                    borderRadius: "10px",
-                    height: "75px",
-                    width: "95px",
-                  }}
-                />
-                <Box>
-                  <Typography
-                    variant="subtitle2"
-                    color="textPrimary"
-                    fontWeight={600}
-                  >
-                    {product.title}
-                  </Typography>{" "}
-                  <Typography color="textSecondary" fontSize="12px">
-                    {" "}
-                    {product.category}
-                  </Typography>
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    spacing={2}
-                    mt="5px"
-                  >
-                    <Typography variant="subtitle2" fontWeight="500">
-                      ${product.price * product.qty}
-                    </Typography>
-                    <ButtonGroup size="small" aria-label="small button group">
-                      <Button
-                        color="success"
-                        className="btn-xs"
-                        variant="text"
-                        onClick={() => decrementQuantity(product.id)}
-                        disabled={product.qty < 2}
-                      >
-                        <IconMinus stroke={1.5} size="0.8rem" />
-                      </Button>
-                      <Button
-                        color="inherit"
-                        sx={{ bgcolor: "transparent", color: "text.secondary" }}
-                        variant="text"
-                      >
-                        {product.qty}
-                      </Button>
-                      <Button
-                        color="success"
-                        className="btn-xs"
-                        variant="text"
-                        onClick={() => incrementQuantity(product.id)}
-                      >
-                        <IconPlus stroke={1.5} size="0.8rem" />
-                      </Button>
-                    </ButtonGroup>
-                  </Stack>
-                </Box>
-              </Stack>
-            </Box>
-          ))}
-        </>
-      ) : (
-        <Box textAlign="center" mb={3}>
-          <Image src='/images/products/empty-shopping-cart.svg' alt="cart" width={200} height={200} />
-          <Typography variant="h5" mb={2}>
-            Cart is Empty
-          </Typography>
-          <Button
-            component={Link}
-            href="/apps/ecommerce/shop"
-            variant="contained"
-          >
-            Go back to Shopping
-          </Button>
-        </Box>
-      )}
+      <Box textAlign="center" mb={3}>
+        <Image src={emptyCart} alt="cart" width={200} />
+        <Typography variant="h5" mb={2}>
+          Cart is Empty
+        </Typography>
+        <Button
+          component={Link}
+          href="/"
+          variant="contained"
+        >
+          Go back to Shopping
+        </Button>
+      </Box>
     </Box>
   );
 };

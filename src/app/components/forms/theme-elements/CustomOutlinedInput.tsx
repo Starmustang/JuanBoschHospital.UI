@@ -1,7 +1,6 @@
-'use client'
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { OutlinedInput } from '@mui/material';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 const CustomOutlinedInput = styled((props: any) => <OutlinedInput {...props} />)(({ theme }) => ({
   '& .MuiOutlinedInput-input::-webkit-input-placeholder': {

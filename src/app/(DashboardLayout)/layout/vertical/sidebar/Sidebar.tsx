@@ -8,11 +8,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import SidebarItems from "./SidebarItems";
 import Logo from "../../shared/logo/Logo";
+import Scrollbar from "@/app/components/custom-scroll/Scrollbar";
 import { CustomizerContext } from "@/app/context/customizerContext";
 import config from '@/app/context/config'
-
-import Scrollbar from "@/app/components/custom-scroll/Scrollbar";
-
 import { Icon } from "@iconify/react";
 import { useContext } from "react";
 
@@ -26,17 +24,16 @@ export default function Sidebar() {
     setIsMobileSidebar,
     isCardShadow
   } = useContext(CustomizerContext);
+  const theme = useTheme();
 
   const MiniSidebarWidth = config.miniSidebarWidth;
   const SidebarWidth = config.sidebarWidth;
-
-
-  const theme = useTheme();
 
   const toggleWidth =
     isCollapse == "mini-sidebar" && !isSidebarHover
       ? MiniSidebarWidth
       : SidebarWidth;
+
 
   const onHoverEnter = () => {
     if (isCollapse == "mini-sidebar") {
@@ -47,6 +44,7 @@ export default function Sidebar() {
   const onHoverLeave = () => {
     setIsSidebarHover(false);
   };
+
 
   return (
     <>

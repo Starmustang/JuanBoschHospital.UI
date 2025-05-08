@@ -1,3 +1,4 @@
+
 import Menudata from '../Menudata';
 import { usePathname } from "next/navigation";
 import Box from '@mui/material/Box';
@@ -9,6 +10,7 @@ import NavCollapse from '../NavCollapse';
 import { CustomizerContext } from '@/app/context/customizerContext';
 import { useContext } from 'react';
 
+
 const NavListing = () => {
   const pathname = usePathname();
   const pathDirect = pathname;
@@ -16,7 +18,6 @@ const NavListing = () => {
   const { isCollapse, isSidebarHover } = useContext(CustomizerContext);
 
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
-
   const hideMenu = lgUp ? isCollapse == "mini-sidebar" && !isSidebarHover : '';
 
   return (

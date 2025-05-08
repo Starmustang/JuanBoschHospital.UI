@@ -15,8 +15,10 @@ const SidebarItems = () => {
   const pathDirect = pathname;
   const pathWithoutLastPart = pathname.slice(0, pathname.lastIndexOf('/'));
   const { isSidebarHover, isCollapse, isMobileSidebar, setIsMobileSidebar } = useContext(CustomizerContext);
+
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
   const hideMenu: any = lgUp ? isCollapse == "mini-sidebar" && !isSidebarHover : '';
+
 
   return (
     <Box sx={{ px: "20px" }}>

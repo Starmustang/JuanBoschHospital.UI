@@ -11,7 +11,7 @@ export type Likes = {
 };
 
 export type PostImageType = {
-  img: any;
+  img: string;
   featured?: boolean;
   title?: string;
 };
@@ -49,14 +49,4 @@ export type PostType = {
   id?: any;
   profile: ProfileType;
   data: PostDataType;
-};
-
-export type profiledataType = {
-  name: string;
-  role: string;
-  avatar: any;
-  coverImage: string;
-  postsCount: any;
-  followersCount: any;
-  followingCount: any;
 };

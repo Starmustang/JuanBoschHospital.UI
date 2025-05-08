@@ -2,7 +2,7 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { styled, useTheme } from "@mui/material/styles";
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import Header from "./layout/vertical/header/Header";
 import Sidebar from "./layout/vertical/sidebar/Sidebar";
 import Customizer from "./layout/shared/customizer/Customizer";
@@ -31,7 +31,6 @@ export default function RootLayout({
 }) {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
-
   const { activeLayout, isLayout, isCollapse } = useContext(CustomizerContext);
   const MiniSidebarWidth = config.miniSidebarWidth;
   const SidebarWidth = config.sidebarWidth;
@@ -42,6 +41,9 @@ export default function RootLayout({
     minHeight: "100vh",
     width: "100%",
     padding: activeLayout == "horizontal" ? 0 : "20px",
+
+    // backgroundColor: (theme) =>
+    //   theme.palette.mode === "dark" ? "#212946" : theme.palette.grey[200]
   }));
 
   return (
@@ -51,14 +53,19 @@ export default function RootLayout({
       {/* Main Wrapper */}
       {/* ------------------------------------------- */}
       <Box width="100%">
+        {/* PageContent */}
+
         {/* ------------------------------------------- */}
         {/* Sidebar */}
         {/* ------------------------------------------- */}
         {activeLayout === 'horizontal' ? "" : <Sidebar />}
 
+
         {activeLayout === 'horizontal' ? <HorizontalHeader /> : ""}
 
+
         {activeLayout === 'horizontal' ? <Navigation /> : ""}
+
         <PageWrapper
           className="page-wrapper"
           sx={{
@@ -93,10 +100,13 @@ export default function RootLayout({
             <Box
               sx={{
                 minHeight: "calc(100vh - 170px)",
+
                 py: { sm: 3 },
               }}
             >
+              {/* <Outlet /> */}
               {children}
+              {/* <Index /> */}
             </Box>
 
             {/* ------------------------------------------- */}

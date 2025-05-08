@@ -10,7 +10,6 @@ import { CustomizerContext } from '@/app/context/customizerContext';
 import { useContext } from 'react';
 import config from '@/app/context/config';
 
-
 const Navigation = () => {
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
   const { isLayout, isMobileSidebar, setIsMobileSidebar } = useContext(CustomizerContext);

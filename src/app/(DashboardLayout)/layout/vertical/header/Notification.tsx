@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Avatar from '@mui/material/Avatar';
+import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
@@ -12,6 +13,7 @@ import Scrollbar from "@/app/components/custom-scroll/Scrollbar";
 import { Icon } from "@iconify/react";
 import { Stack } from "@mui/system";
 import Link from "next/link";
+import theme from "@/utils/theme";
 
 const Notifications = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
