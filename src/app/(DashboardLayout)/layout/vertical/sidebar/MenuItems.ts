@@ -21,99 +21,38 @@ interface MenuitemsType {
 const Menuitems: MenuitemsType[] = [
   {
     navlabel: true,
-    subheader: "Home",
+    subheader: "Pagina principal",
   },
 
   {
     id: uniqueId(),
-    title: "Sample Page",
+    title: "Pagina principal",
     icon: 'screencast-2-line-duotone',
     href: "/",
     bgcolor: "primary",
   },
-  {
-    navlabel: true,
-    subheader: "Other",
-  },
+
   {
     id: uniqueId(),
-    title: "Menu Level",
-    icon: 'double-alt-arrow-down-bold-duotone',
-    href: "/menulevel/",
+    title: "Doctor",
+    icon: 'screencast-2-line-duotone',    
     bgcolor: "primary",
-    children: [
-      {
-        id: uniqueId(),
-        title: "Level 1",
-        href: "/l1",
-      },
-      {
-        id: uniqueId(),
-        title: "Level 1.1",
-        href: "/l1.1",
-        children: [
-          {
-            id: uniqueId(),
-            title: "Level 2",
-            href: "/l2",
-          },
-          {
-            id: uniqueId(),
-            title: "Level 2.1",
-            href: "/l2.1",
-            children: [
-              {
-                id: uniqueId(),
-                title: "Level 3",
-                href: "/l3",
-              },
-              {
-                id: uniqueId(),
-                title: "Level 3.1",
-                href: "/l3.1",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: uniqueId(),
-    title: "Disabled",
-    icon: 'forbidden-circle-line-duotone',
-    bgcolor: "secondary",
-    href: "",
-    disabled: true,
-  },
-  {
-    id: uniqueId(),
-    title: "SubCaption",
-    subtitle: "This is the sutitle",
-    icon: 'square-academic-cap-line-duotone',
-    bgcolor: "warning",
-    href: "",
+    href: "/",
   },
 
   {
     id: uniqueId(),
-    title: "Chip",
-    icon: 'archive-check-line-duotone',
-    bgcolor: "error",
-    href: "",
-    chip: "9",
-    chipColor: "error",
+    title: "Paciente",
+    icon: 'screencast-2-line-duotone',    
+    bgcolor: "primary",
+    href: "/",
   },
+
   {
-    id: uniqueId(),
-    title: "Outlined",
-    icon: 'smile-circle-line-duotone',
-    bgcolor: "info",
-    href: "",
-    chip: "outline",
-    variant: "outlined",
-    chipColor: "info",
+    navlabel: true,
+    subheader: "Otros",
   },
+  
   {
     id: uniqueId(),
     title: "External Link",
