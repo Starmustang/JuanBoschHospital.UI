@@ -12,7 +12,7 @@ const PatientPage = () => {
         <PageContainer title="Paciente">
             <DashboardCard title="Paciente">
                 <>
-                <Button variant="contained" onClick={handleOpenPatientModal}>Registrar paciente</Button>
+                <Button variant="contained" onClick={handleOpenPatientModal} sx={{mb: 2}}>Registrar paciente</Button>
                 <PatientTable />
                 <PatientModal />
                 </>

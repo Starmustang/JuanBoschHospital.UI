@@ -18,11 +18,17 @@ const PatientModal = () => {
         createPatient(data);
         btnClose();
     }
+
     return (
         <>
-        <Dialog open={showPatientModal} onClose={btnClose}>
+        <Dialog 
+        open={showPatientModal} 
+        onClose={btnClose}
+        fullWidth
+        maxWidth="md"
+        >
             <DialogTitle>Crear paciente</DialogTitle>
-            <DialogContent>
+            <DialogContent sx={{ p: 0 }}>
                 <FormProvider {...formMethods}>
                 <PatientForm/>
                 </FormProvider>
