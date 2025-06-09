@@ -45,7 +45,7 @@ const Menuitems: MenuitemsType[] = [
     title: "Paciente",
     icon: 'screencast-2-line-duotone',    
     bgcolor: "primary",
-    href: "/",
+    href: "/patient",
   },
 
   {
