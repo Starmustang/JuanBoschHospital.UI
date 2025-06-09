@@ -1,48 +1,74 @@
-import React from 'react';
-import { Controller, Control, FieldError } from 'react-hook-form';
-import { TextFieldProps } from '@mui/material';
-import CustomTextField from '@/app/components/forms/theme-elements/CustomTextField';
+import { Controller, Control } from 'react-hook-form';
 import CustomFormLabel from '@/app/components/forms/theme-elements/CustomFormLabel';
+import CustomTextField from '@/app/components/forms/theme-elements/CustomTextField';
+import { InputAdornment, IconButton } from '@mui/material';
+import { useState, ReactNode } from 'react';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
-interface TextFieldAppProps extends Omit<TextFieldProps, 'name' | 'error'> {
+interface ControlledTextFieldProps {
   name: string;
-  label: string;
   control: Control<any>;
-  error?: FieldError | undefined;
-  helperText?: string;
+  label: string;
+  placeholder?: string;
   autoFocus?: boolean;
+  fullWidth?: boolean;
+  type?: 'text' | 'number' | 'password'; // Support different input types
+  endAdornment?: ReactNode;
+  showPasswordToggle?: boolean;
 }
 
-const TextFieldApp: React.FC<TextFieldAppProps> = ({
+const TextFieldApp: React.FC<ControlledTextFieldProps> = ({
   name,
-  label,
   control,
-  error,
-  helperText,
+  label,
+  placeholder = '',
   autoFocus = false,
-  ...textFieldProps
+  fullWidth = true,
+  type = 'text',
+  endAdornment,
+  showPasswordToggle = false,
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
   return (
-    <>
-      <CustomFormLabel htmlFor={name} color={error ? 'error' : 'default'}>
-        {label}
-      </CustomFormLabel>
-      <Controller
-        name={name}
-        control={control}
-        render={({ field }) => (
+    <Controller
+      name={name}
+      control={control}
+      render={({ field, fieldState: { error } }) => (
+        <>
+          <CustomFormLabel htmlFor={name} color={error ? 'error' : 'default'}>
+            {label}
+          </CustomFormLabel>
           <CustomTextField
             {...field}
             id={name}
             error={!!error}
-            helperText={error?.message || helperText}
-            fullWidth
+            helperText={error?.message || ''}
+            placeholder={placeholder}
             autoFocus={autoFocus}
-            {...textFieldProps}
+            fullWidth={fullWidth}
+            type={showPasswordToggle ? (showPassword ? 'text' : 'password') : type}
+            InputProps={{
+              endAdornment: endAdornment || (showPasswordToggle && type === 'password' ? (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={handleTogglePassword}
+                    edge="end"
+                    size="small"
+                  >
+                    {showPassword ? <VisibilityOffOutlinedIcon /> : <RemoveRedEyeOutlinedIcon />}
+                  </IconButton>
+                </InputAdornment>
+              ) : undefined)
+            }}
           />
-        )}
-      />
-    </>
+        </>
+      )}
+    />
   );
 };
 
