@@ -1,4 +1,4 @@
-import { Country } from "@/app/(DashboardLayout)/types/country/country";
+import { Country } from "@/app/(DashboardLayout)/types/Address/country/country";
 import axiosMain from "@/app/services";
 import { toast } from "react-toastify";
 import { StateCreator } from "zustand";

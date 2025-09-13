@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogTitle, DialogActions, Button } from "@mui/
 import CountryForm from "./countryForm";
 import { FormProvider, useForm } from "react-hook-form";
 import { useMainStore } from "@/app/store";
-import { Country } from "../../types/country/country";
+import { Country } from "../../../types/Address/country/country";
 
 const CountryModal = () => {
     const formMethods = useForm<Country>();
@@ -25,15 +25,15 @@ const CountryModal = () => {
         fullWidth
         maxWidth="md"
         >
-            <DialogTitle>Country</DialogTitle>
+            <DialogTitle>Pais</DialogTitle>
             <DialogContent>
                 <FormProvider {...formMethods}>
                 <CountryForm />
                 </FormProvider>
             </DialogContent>
             <DialogActions>
-                <Button color="error" variant="contained" onClick={btnClose}>Cancel</Button>
-                <Button color="primary" variant="contained" onClick={handleSubmit(onSubmit)}>Save</Button>
+                <Button color="error" variant="contained" onClick={btnClose}>Cancelar</Button>
+                <Button color="primary" variant="contained" onClick={handleSubmit(onSubmit)}>Guardar</Button>
             </DialogActions>
         </Dialog>
     );

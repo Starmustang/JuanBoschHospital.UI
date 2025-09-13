@@ -1,7 +1,7 @@
 "use client";
 
 import TableApp from "@/app/components/tableApp/tableApp";
-import { Country } from "../../types/country/country";
+import { Country } from "../../../types/Address/country/country";
 import { createColumnHelper, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
 import React, { useEffect } from "react";
 import { useTableWithSearch } from "@/app/components/usetableWithUser/useTableWithUser";

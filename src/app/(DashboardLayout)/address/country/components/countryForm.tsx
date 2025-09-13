@@ -8,14 +8,32 @@ const CountryForm = () => {
     
     return (
         <Grid container spacing={2}>
-            <Grid size={{xs: 12, md: 6}}>
+            <Grid size={{xs: 12, md: 4}}>
        <TextFieldApp
        label="Nombre"
        name="countryName"
        type="text"       
        fullWidth       
        control={control}
-       />
+       />       
+       </Grid>
+       <Grid size={{xs: 12, md: 4}}>
+       <TextFieldApp
+       label="Idioma"
+       name="countryLanguage"
+       type="text"       
+       fullWidth       
+       control={control}
+       />       
+       </Grid>
+       <Grid size={{xs: 12, md: 4}}>
+       <TextFieldApp
+       label="Moneda"
+       name="countryCurrency"
+       type="text"       
+       fullWidth       
+       control={control}
+       />       
        </Grid>
        </Grid>
     );
