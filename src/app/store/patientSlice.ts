@@ -1,5 +1,6 @@
 import { Patient, PatientUpdate } from "@/app/(DashboardLayout)/types/patient/patient";
 import { StateCreator } from "zustand";
+import { MainStore } from "./index";
 import { toast } from "react-toastify";
 import axiosMain from "../services";
 
@@ -16,7 +17,7 @@ export interface PatientSlice {
     handleClosePatientModal: () => void;
 }
 
-export const createPatientSlice: StateCreator<PatientSlice>=(set,get)=>({
+export const createPatientSlice: StateCreator<MainStore, [], [], PatientSlice> = (set, get) => ({
     patientList: [],
     patientDetailed: {} as Patient,
     showPatientModal: false,

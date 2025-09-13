@@ -4,13 +4,13 @@ import { getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedR
 import { createColumnHelper } from "@tanstack/react-table";
 import { Patient } from "@/app/(DashboardLayout)/types/patient/patient";
 import React from "react";
-import { TableApp } from "@/app/components/tableApp/tableApp";
+import  TableApp  from "@/app/components/tableApp/tableApp";
 
 const columnHelper = createColumnHelper<Patient>()
 const PatientTable = () => {
     const [columnFilters, setColumnFilters] = React.useState<any>([]);
 
-    const columns = [
+        const columns = React.useMemo(() => [
         columnHelper.accessor('PatientName', {
             header: 'Nombre',
         }),
@@ -29,9 +29,9 @@ const PatientTable = () => {
         columnHelper.accessor('PatientDirection.HomeNumber', {
             header: 'Numero de casa',
         }),
-    ];
+    ], []);
 
-    const rows = [
+        const rows = React.useMemo(() => [
         {
             PatientName: 'Juan',
             PatientLastName: 'Bosch',
@@ -68,7 +68,7 @@ const PatientTable = () => {
             PatientId: 3,
             PatientIdCard: '12345678',
         },
-    ];
+    ], []);
 
     const table = useReactTable({
         data: rows,

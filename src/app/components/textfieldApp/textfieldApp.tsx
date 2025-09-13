@@ -8,7 +8,7 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 
 interface ControlledTextFieldProps {
   name: string;
-  control: Control<any>;
+  control?: Control<any>;
   label: string;
   placeholder?: string;
   autoFocus?: boolean;
@@ -34,6 +34,35 @@ const TextFieldApp: React.FC<ControlledTextFieldProps> = ({
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
+
+  if (!control) {
+    return (
+      <>
+        <CustomFormLabel htmlFor={name}>{label}</CustomFormLabel>
+        <CustomTextField
+          id={name}
+          placeholder={placeholder}
+          autoFocus={autoFocus}
+          fullWidth={fullWidth}
+          type={showPasswordToggle ? (showPassword ? 'text' : 'password') : type}
+          InputProps={{
+            endAdornment: endAdornment || (showPasswordToggle && type === 'password' ? (
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={handleTogglePassword}
+                  edge="end"
+                  size="small"
+                >
+                  {showPassword ? <VisibilityOffOutlinedIcon /> : <RemoveRedEyeOutlinedIcon />}
+                </IconButton>
+              </InputAdornment>
+            ) : undefined)
+          }}
+        />
+      </>
+    );
+  }
+
   return (
     <Controller
       name={name}

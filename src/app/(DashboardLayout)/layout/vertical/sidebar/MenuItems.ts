@@ -49,6 +49,32 @@ const Menuitems: MenuitemsType[] = [
   },
 
   {
+    id: uniqueId(),
+    title: "Direcciones",
+    icon: 'screencast-2-line-duotone',    
+    bgcolor: "primary",
+    href: "/province",
+    children: [
+      {
+        id: uniqueId(),
+        title: "Pais",
+        icon: 'screencast-2-line-duotone',    
+        bgcolor: "primary",
+        href: "/country",
+      },
+      {
+        id: uniqueId(),
+        title: "Provincia",
+        icon: 'screencast-2-line-duotone',    
+        bgcolor: "primary",
+        href: "/province",
+      },
+    ]
+  },
+
+  
+
+  {
     navlabel: true,
     subheader: "Otros",
   },
