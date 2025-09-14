@@ -13,7 +13,7 @@ interface ControlledTextFieldProps {
   placeholder?: string;
   autoFocus?: boolean;
   fullWidth?: boolean;
-  type?: 'text' | 'number' | 'password'; // Support different input types
+  type?: 'text' | 'number' | 'password' | 'date'; // Support different input types
   endAdornment?: ReactNode;
   showPasswordToggle?: boolean;
 }

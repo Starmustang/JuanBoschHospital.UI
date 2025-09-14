@@ -72,6 +72,7 @@ export const createPatientSlice: StateCreator<MainStore, [], [], PatientSlice> =
     },
     handleOpenPatientModal: () => {
         set({showPatientModal: true});
+        console.log("patientmodal: ", get().showPatientModal);
     },
     handleClosePatientModal: () => {
         set({showPatientModal: false});

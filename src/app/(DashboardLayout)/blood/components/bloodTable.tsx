@@ -4,10 +4,13 @@ import { useState } from "react";
 import { Typography } from "@mui/material";
 import { useTableWithSearch } from "@/app/components/usetableWithUser/useTableWithUser";
 import TableApp from "@/app/components/tableApp/tableApp";
+import { useMainStore } from "@/app/store";
 
 const columnHelper = createColumnHelper<blood>()
 const BloodTable = () => {
     const [columnFilters, setColumnFilters] = useState<any>([]);
+    const {bloodList} = useMainStore();
+
     const columns = [
         columnHelper.accessor('bloodType', {
             header: 'Tipo de sangre',
@@ -19,7 +22,7 @@ const BloodTable = () => {
         }),
     ]
     const {table, globalFilter, setGlobalFilter} = useTableWithSearch({
-        data: [],
+        data: bloodList,
         columns,
         columnsToSearch: ['bloodType'],
         options: {

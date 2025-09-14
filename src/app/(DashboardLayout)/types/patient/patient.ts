@@ -1,7 +1,7 @@
 import { PatientDirection } from "./patientDIrection";
 
 export interface Patient {
-    
+    PatientId?: number;
     PatientName: string;
     PatientLastName?: string;
     PatientIdCard?: string;

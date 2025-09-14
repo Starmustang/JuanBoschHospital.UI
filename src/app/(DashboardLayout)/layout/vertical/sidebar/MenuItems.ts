@@ -95,6 +95,29 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
+    title: "Fecha de medicion",
+    icon: 'screencast-2-line-duotone',    
+    bgcolor: "primary",
+    href: "/dates/dateMedic",
+    children: [
+      {
+        id: uniqueId(),
+        title: "Fecha de medicion",
+        icon: 'screencast-2-line-duotone',    
+        bgcolor: "primary",
+        href: "/dates/dateMedic",
+      },
+      {
+        id: uniqueId(),
+        title: "Fecha de doctor",
+        icon: 'screencast-2-line-duotone',    
+        bgcolor: "primary",
+        href: "/dates/dateDoctor",
+      },
+    ]
+  },
+  {
+    id: uniqueId(),
     title: "Plan de salud",
     icon: 'screencast-2-line-duotone',    
     bgcolor: "primary",
