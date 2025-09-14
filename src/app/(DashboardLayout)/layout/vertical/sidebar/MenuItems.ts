@@ -50,6 +50,14 @@ const Menuitems: MenuitemsType[] = [
 
   {
     id: uniqueId(),
+    title: "Sangre",
+    icon: 'screencast-2-line-duotone',    
+    bgcolor: "primary",
+    href: "/blood",
+  },
+
+  {
+    id: uniqueId(),
     title: "Direcciones",
     icon: 'screencast-2-line-duotone',    
     bgcolor: "primary",
@@ -85,22 +93,43 @@ const Menuitems: MenuitemsType[] = [
       },
     ]
   },
-
-  
-
-  {
-    navlabel: true,
-    subheader: "Otros",
-  },
-  
   {
     id: uniqueId(),
-    title: "External Link",
-    external: true,
-    icon: 'link-bold-duotone',
+    title: "Plan de salud",
+    icon: 'screencast-2-line-duotone',    
     bgcolor: "primary",
-    href: "https://google.com",
+    href: "/ars/arsPlan",
+    children: [
+      {
+        id: uniqueId(),
+        title: "Planes de salud",
+        icon: 'screencast-2-line-duotone',    
+        bgcolor: "primary",
+        href: "/ars/arsPlan",
+      },
+      {
+        id: uniqueId(),
+        title: "Aseguradoras",
+        icon: 'screencast-2-line-duotone',    
+        bgcolor: "primary",
+        href: "/ars/arsEnsurance",
+      },
+    ]
   },
+
+  // {
+  //   navlabel: true,
+  //   subheader: "Otros",
+  // },
+  
+  // {
+  //   id: uniqueId(),
+  //   title: "External Link",
+  //   external: true,
+  //   icon: 'link-bold-duotone',
+  //   bgcolor: "primary",
+  //   href: "https://google.com",
+  // },
 ];
 
 export default Menuitems;

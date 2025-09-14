@@ -24,18 +24,18 @@ export default function Logo() {
       <LinkStyled href="/">
         {activeMode === "dark" ? (
           <Image
-            src="/images/logos/logo-light.svg"
+            src="/images/logos/LogoJuanBosch.png"
             alt="logo"
             height={TopbarHeight}
-            width={174}
+            width={70}
             priority
           />
         ) : (
           <Image
-            src={"/images/logos/logo-dark.svg"}
+            src={"/images/logos/LogoJuanBosch.png"}
             alt="logo"
             height={TopbarHeight}
-            width={174}
+            width={70}
             priority
           />
         )}
