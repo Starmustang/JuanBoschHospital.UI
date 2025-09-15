@@ -18,7 +18,6 @@ const DateDoctorModal = () => {
         handleCloseDateDoctorModal();
     }
     
-
     return (
         <Dialog 
         open={showDateDoctorModal}

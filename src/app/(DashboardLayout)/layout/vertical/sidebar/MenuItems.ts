@@ -65,10 +65,10 @@ const Menuitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-        title: "Pais",
+        title: "Doctores",
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
-        href: "/address/country",
+        href: "/address/doctorAddress",
       },
       {
         id: uniqueId(),
