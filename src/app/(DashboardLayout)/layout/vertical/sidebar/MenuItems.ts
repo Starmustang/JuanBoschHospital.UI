@@ -91,6 +91,13 @@ const Menuitems: MenuitemsType[] = [
         bgcolor: "primary",
         href: "/address/sector",
       },
+      {
+        id: uniqueId(),
+        title: "Pais",
+        icon: 'screencast-2-line-duotone',    
+        bgcolor: "primary",
+        href: "/address/country",
+      }
     ]
   },
   {

@@ -57,14 +57,14 @@ const ArsPlanForm = () => {
                     control={control}
                 />
             </Grid>
-            <Grid size={{ xs: 12, md: 4 }}>
+            <Grid size={{ xs: 12, md: 6 }}>
                 <CheckBoxApp 
                     name="internationalCoverage"
                     label="Cobertura Internacional"
                     control={control}
                 />
             </Grid>
-            <Grid size={{ xs: 12, md: 4 }}>
+            <Grid size={{ xs: 12, md: 6 }}>
                 <CheckBoxApp 
                     name="isPlanActive"
                     label="Plan Activo"

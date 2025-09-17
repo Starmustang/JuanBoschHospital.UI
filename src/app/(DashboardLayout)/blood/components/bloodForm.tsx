@@ -16,7 +16,7 @@ const BloodForm = () => {
             control={control}
             />
         </Grid>
-        <Grid size={{xs: 12, md: 6}}>
+        <Grid size={{xs: 12, md: 12}}>
             <CheckBoxApp
             control={control}
             name="bloodActive"

@@ -24,7 +24,7 @@ const BloodModal = () => {
         fullWidth
         maxWidth="md"
         >
-            <DialogTitle>Blood</DialogTitle>
+            <DialogTitle>Sangre</DialogTitle>
             <DialogContent>
                 <FormProvider {...formMethods}>
                 <BloodForm />

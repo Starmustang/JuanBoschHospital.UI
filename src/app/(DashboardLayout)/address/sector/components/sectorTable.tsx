@@ -4,9 +4,11 @@ import Typography from "@mui/material/Typography";
 import { useTableWithSearch } from "@/app/components/usetableWithUser/useTableWithUser";
 import { useState } from "react";
 import TableApp from "@/app/components/tableApp/tableApp";
+import { useMainStore } from "@/app/store";
 
 const SectorTable = () => {
     const columnHelper = createColumnHelper<Sector>(); 
+    const {sectorList} = useMainStore();
     const [columnFilters, setColumnFilters] = useState<any>([]);
     const columns = [
         columnHelper.accessor('sectorName', {
@@ -27,7 +29,7 @@ const SectorTable = () => {
         }),
     ]
     const {table, globalFilter, setGlobalFilter} = useTableWithSearch({
-        data: [],
+        data: sectorList,
         columns,
         columnsToSearch: ['sectorName', 'municipalityName'],
         options: {
