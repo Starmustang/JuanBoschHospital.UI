@@ -12,6 +12,7 @@ import { createDateDoctorSlice, DateDoctorSlice } from "./Dates/DateDoctor/dateD
 import { createDateMedicSlice, DateMedicSlice } from "./Dates/DateMedic/dateMedicSlice";
 import { createDoctorAddressSlice, DoctorAddressSlice } from "./Address/doctorAddress/doctorAddressSlice";
 import { createDoctorSlice, DoctorSlice } from "./Doctor/doctorSlice";
+import { createDoctorEnsuranceSlice, DoctorEnsuranceSlice } from "./Doctor/doctorEnsuranceSlice";
 
 export type MainStore = PatientSlice &
   CountrySlice &
@@ -23,6 +24,7 @@ export type MainStore = PatientSlice &
   DateDoctorSlice &
   DateMedicSlice &
   DoctorAddressSlice &
+  DoctorEnsuranceSlice &
   DoctorSlice &
   ArsPlanSlice;
 
@@ -41,6 +43,7 @@ export const useMainStore = create(
       ...createDoctorSlice(set, get, store),
       ...createArsEnsuranceSlice(set, get, store),
       ...createArsPlanSlice(set, get, store),
+      ...createDoctorEnsuranceSlice(set, get, store),
     }),
     { name: "MainStore" }
   )

@@ -37,7 +37,19 @@ const Menuitems: MenuitemsType[] = [
     title: "Doctor",
     icon: 'screencast-2-line-duotone',    
     bgcolor: "primary",
-    href: "/",
+    href: "/doctor",
+    children: [
+      {
+        id: uniqueId(),
+        title: "Doctores",
+        href: "/doctor",
+      },
+      {
+        id: uniqueId(),
+        title: "Seguro de doctor",
+        href: "/doctor/doctorEnsurance",
+      }
+    ]
   },
 
   {
