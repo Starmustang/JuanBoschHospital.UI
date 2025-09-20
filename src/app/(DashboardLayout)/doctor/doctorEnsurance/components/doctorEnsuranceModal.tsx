@@ -14,13 +14,12 @@ const DoctorEnsuranceModal = () => {
         console.log(data);
         reset();
         handleCloseDoctorEnsuranceModal();
-    }
+    };
 
     const handleCancel = () => {
         reset();
         handleCloseDoctorEnsuranceModal();
-    }
-
+    };
 
     return (
         <Dialog
