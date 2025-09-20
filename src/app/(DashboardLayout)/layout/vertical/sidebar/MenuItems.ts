@@ -67,6 +67,22 @@ const Menuitems: MenuitemsType[] = [
     bgcolor: "primary",
     href: "/blood",
   },
+  
+
+  {
+    id: uniqueId(),
+    title: "Evaluaciones Medicas",
+    icon: 'screencast-2-line-duotone',    
+    bgcolor: "primary",
+    href: "/medic/medicEvaluation",
+  },
+  {
+    id: uniqueId(),
+    title: "Registros Medicos",
+    icon: 'screencast-2-line-duotone',    
+    bgcolor: "primary",
+    href: "/medic/medicRecords",
+  },
 
   {
     id: uniqueId(),

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { createPatientSlice, PatientSlice } from "./patientSlice";
+import { createPatientSlice, PatientSlice } from "./patient/patientSlice";
 import { createCountrySlice, CountrySlice } from "./Address/Country/countrySlice";
 import { createProvinceSlice, ProvinceSlice } from "./Address/Province/provinceSlice";
 import { createMunicipalitySlice, MunicipalitySlice } from "./Address/municipality/municipalitySlice";

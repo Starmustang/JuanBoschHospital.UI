@@ -10,9 +10,11 @@ const PatientPage = () => {
     const {handleOpenPatientModal} = useMainStore();
     return (
         <PageContainer title="Paciente">
-            <DashboardCard title="Paciente">
-                <>
+            <DashboardCard title="Paciente" action={
                 <Button variant="contained" onClick={handleOpenPatientModal} sx={{mb: 2}}>Registrar paciente</Button>
+            }>
+                <>
+                
                 <PatientTable />
                 <PatientModal />
                 </>

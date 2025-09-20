@@ -3,8 +3,10 @@ import { MedicEvaluations } from "@/app/(DashboardLayout)/types/medic/medicEvalu
 import { Typography } from "@mui/material";
 import { useTableWithSearch } from "@/app/components/usetableWithUser/useTableWithUser";
 import TableApp from "@/app/components/tableApp/tableApp";
+import { useMainStore } from "@/app/store";
 
 const MedicEvaluationTable = () => {
+    const {medicEvaluationsList} = useMainStore();
     const columnHelper = createColumnHelper<MedicEvaluations>();
     const columns = [
         columnHelper.accessor("heartRateEva", { 
@@ -49,7 +51,7 @@ const MedicEvaluationTable = () => {
         }),
     ];
     const {table, globalFilter, setGlobalFilter} = useTableWithSearch({
-        data: [],
+        data: medicEvaluationsList,
         columns,
         columnsToSearch: ["heartRateEva", "weightEva", "presurreEva", "breathingEva"],
     });

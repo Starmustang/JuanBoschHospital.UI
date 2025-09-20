@@ -8,3 +8,13 @@ export interface MedicEvaluations {
     heightEva: string,
     previousSickNessEva: string
 }
+
+export interface MedicEvaluationsPost {
+    weightEva: number,
+    presurreEva: number,
+    breathingEva: number,
+    heartRateEva: string,
+    otherInfoEva: string,
+    heightEva: string,
+    previousSickNessEva: string 
+}

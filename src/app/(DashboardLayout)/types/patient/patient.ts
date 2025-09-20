@@ -1,22 +1,46 @@
 import { PatientDirection } from "./patientDIrection";
 
 export interface Patient {
-    PatientId?: number;
-    PatientName: string;
-    PatientLastName?: string;
-    PatientIdCard?: string;
-    PatientPassport?: string;
-    PatientBirthDate?: Date;
-    PatientGender?: string;
-    PatientEmail?: string;
-    PatientPhone?: string;
-    PatientDirection?: PatientDirection;
+    patientId?: number;
+    patientName: string;
+    patientLastName?: string;
+    patientIdCard?: string;
+    patientPassport?: string;
+    patientBirthDate?: Date;
+    patientGender?: string;
+    patientEmail?: string;
+    patientPhone?: string;
+    arsPlansId?: number;
+    arsPlansName?: string;
+    addressId?: number;
+    houseNumber?: string;
+    houseStreet?: string;
+    patientEmergencieContact?: string;
+    patientFisRecord?: string;
+    bloodId?: number;
+    bloodType?: string;
+    medicRecordId?: number;
+    patientDirectionId?: number;
+    patientDoctorId?: number;
+    dateMedicId?: number;
 }
 
-export interface PatientUpdate extends Patient {
-    PatientId?: number;
+export interface PatientPost {
+    patientName: string,
+    patientLastName: string,
+    patientIdCard: string,
+    patientPassport: string,
+    patientBirthDate: string,
+    patientGender: string,
+    patientEmail: string,
+    patientPhone: string,
+    arsPlansId: number,
+    addressId: number,
+    patientEmergencieContact: string,
+    patientFirstRecord: string,
+    bloodId: number,
+    medicRecordId: number,
+    patientDirectionId: number,
+    patientDoctorId: number,
+    dateMedicId: number
 }
-
-
-
-
