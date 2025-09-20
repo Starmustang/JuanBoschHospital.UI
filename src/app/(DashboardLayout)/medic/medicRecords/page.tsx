@@ -1,3 +1,5 @@
+"use client";
+
 import PageContainer from "@/app/components/container/PageContainer";
 import DashboardCard from "@/app/components/shared/DashboardCard";
 import MedicRecordsTable from "./components/medicRecordsTable";
