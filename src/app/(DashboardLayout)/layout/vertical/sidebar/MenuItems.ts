@@ -58,6 +58,18 @@ const Menuitems: MenuitemsType[] = [
     icon: 'screencast-2-line-duotone',    
     bgcolor: "primary",
     href: "/patient",
+    children: [
+      {
+        id: uniqueId(),
+        title: "Pacientes",
+        href: "/patient",
+      },
+      {
+        id: uniqueId(),
+        title: "Direcciones",
+        href: "/patient/patientDirection",
+      }
+    ]
   },
 
   {
