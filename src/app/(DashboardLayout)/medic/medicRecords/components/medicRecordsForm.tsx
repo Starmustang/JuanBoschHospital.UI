@@ -10,8 +10,8 @@ const MedicRecordsForm = () => {
     const { patientList, doctorList } = useMainStore();
 
     const patientOptions = patientList.map(patient => ({
-        id: patient.PatientId!,
-        name: `${patient.PatientName} ${patient.PatientLastName}`
+        id: patient.patientId!,
+        name: `${patient.patientName} ${patient.patientLastName}`
     }));
 
     const doctorOptions = doctorList.map(doctor => ({

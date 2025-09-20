@@ -1,12 +1,12 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
-import { PatientUpdate } from "@/app/(DashboardLayout)/types/patient/patient";
+import { PatientPost } from "@/app/(DashboardLayout)/types/patient/patient";
 import { useMainStore } from "@/app/store";
 import PatientForm from "./patientForm";
 
 const PatientModal = () => {    
     const {showPatientModal, handleClosePatientModal, createPatient} = useMainStore();
-    const formMethods = useForm<PatientUpdate>();
+    const formMethods = useForm<PatientPost>();
 
     const { handleSubmit, reset, setValue } = formMethods;
 
@@ -14,7 +14,7 @@ const PatientModal = () => {
         reset();
         handleClosePatientModal();
     }
-    const onSubmit = (data: PatientUpdate) => {
+    const onSubmit = (data: PatientPost) => {
         createPatient(data);
         btnClose();
     }

@@ -10,8 +10,8 @@ const DateMedicForm = () => {
     const { patientList, dateDoctorList } = useMainStore();
 
     const patientOptions = patientList.map(patient => ({
-        id: patient.PatientId || 0,
-        name: `${patient.PatientName} ${patient.PatientLastName || ''}`
+        id: patient.patientId || 0,
+        name: `${patient.patientName} ${patient.patientLastName || ''}`
     }));
 
     const dateDoctorOptions = dateDoctorList.map(date => ({

@@ -12,7 +12,7 @@ const MunicipalityForm = () => {
     return (
         <Grid container spacing={2}>
             <Grid size={{xs: 12, md: 12}}>
-                <TextFieldApp name={"municipalityName"} label={"Nombre"} />
+                <TextFieldApp name={"municipalityName"} label={"Nombre"} control={control}/>
             </Grid>
             <Grid size={{xs: 12, md: 12}}>
                 <AutocompleteApp name={"provinceId"} control={control} label={"Provincia"} options={provinceList.map((province) => ({
