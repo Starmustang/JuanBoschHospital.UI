@@ -2,7 +2,7 @@ import React from "react";
 import { CustomizerContextProvider } from "./context/customizerContext";
 import MyApp from "./app";
 import "./global.css";
-
+import { Analytics } from "@vercel/analytics/react";
 
 
 export const metadata = {
@@ -19,7 +19,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <CustomizerContextProvider>
-          <MyApp>{children}</MyApp>
+          <MyApp>
+            {children}
+            <Analytics />
+          </MyApp>
         </CustomizerContextProvider>
       </body>
     </html>
