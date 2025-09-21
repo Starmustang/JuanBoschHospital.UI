@@ -25,6 +25,8 @@ const DoctorModal = () => {
         <Dialog
             open={showDoctorModal}
             onClose={handleClose}
+            fullWidth
+            maxWidth="md"
         >
             <DialogTitle>Doctor</DialogTitle>
             <DialogContent>
