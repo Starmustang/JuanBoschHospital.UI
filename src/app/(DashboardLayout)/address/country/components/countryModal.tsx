@@ -3,6 +3,7 @@ import CountryForm from "./countryForm";
 import { FormProvider, useForm } from "react-hook-form";
 import { useMainStore } from "@/app/store";
 import { Country } from "../../../types/Address/country/country";
+import { useEffect } from "react";
 
 const CountryModal = () => {
     const formMethods = useForm<Country>({
@@ -12,8 +13,22 @@ const CountryModal = () => {
             countryCurrency: ""
         }
     });
-    const { handleSubmit, reset } = formMethods;
-    const {showCountryModal, handleCloseCountryModal, createCountry} = useMainStore();
+    const { handleSubmit, reset, setValue } = formMethods;
+    const {showCountryModal, handleCloseCountryModal, createCountry, countryId, updateCountry, getCountryDetailed, countryDetailed} = useMainStore();
+
+    useEffect(() => {
+        if(countryId){
+            getCountryDetailed(countryId);            
+        }
+    }, [countryId]);
+
+    useEffect(() => {
+        if(countryDetailed && countryId){
+            setValue('countryName', countryDetailed.countryName);
+            setValue('countryLanguage', countryDetailed.countryLanguage);
+            setValue('countryCurrency', countryDetailed.countryCurrency);
+        }
+    }, [countryDetailed, countryId]);
     
     const btnClose = () => {
         reset();
@@ -21,7 +36,15 @@ const CountryModal = () => {
     }
     const onSubmit = (data: Country) => {
         console.log("data: ",data);
-        createCountry(data);
+        if(countryId){
+            const country = {
+                ...data,
+                countryId: countryId
+            }
+            updateCountry(country);
+        }else{
+            createCountry(data);
+        }
         btnClose();
     }
     
@@ -40,7 +63,7 @@ const CountryModal = () => {
             </DialogContent>
             <DialogActions>
                 <Button color="error" variant="contained" onClick={btnClose}>Cancelar</Button>
-                <Button color="primary" variant="contained" onClick={handleSubmit(onSubmit)}>Guardar</Button>
+                <Button color="primary" variant="contained" onClick={handleSubmit(onSubmit)}>{countryId ? 'Editar' : 'Guardar'}</Button>
             </DialogActions>
         </Dialog>
     );

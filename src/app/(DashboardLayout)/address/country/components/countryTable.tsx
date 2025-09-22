@@ -7,11 +7,14 @@ import React, { useEffect } from "react";
 import { useTableWithSearch } from "@/app/components/usetableWithUser/useTableWithUser";
 import Typography from "@mui/material/Typography";
 import { useMainStore } from "@/app/store";
+import TableActions from "@/app/components/tableApp/tableActions";
+import DeleteEntityModal from "@/app/components/modal/DeleteEntityModal";
 
 const columnHelper = createColumnHelper<Country>()
 
 const CountryTable = () => {
-    const { countryList, getCountryList } = useMainStore();
+    const { countryList, getCountryList, showDeleteModal, handleCloseDeleteModal, selectedCountry, 
+        deleteCountry, handleOpenDeleteModal, handleOpenCountryModal } = useMainStore();
 
     useEffect(() => {
         getCountryList();
@@ -44,7 +47,20 @@ const CountryTable = () => {
                 </Typography>
             ),
         }),
+        columnHelper.display({
+            id: 'actions',
+            header: 'Acciones',
+            cell: ({row}) => (
+                <TableActions
+                    onEdit={() => handleOpenCountryModal(row.original.countryId)}
+                    onDelete={() => handleOpenDeleteModal(row.original.countryId || 0)}
+                />
+            ),
+        }), 
     ], []);
+
+
+
     const {table, globalFilter, setGlobalFilter} = useTableWithSearch({
         data: countryList,
         columns,
@@ -63,7 +79,17 @@ const CountryTable = () => {
         }
     })
     return (
+        <>
         <TableApp table={table} globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
+        <DeleteEntityModal
+        show={showDeleteModal}
+        handleClose={handleCloseDeleteModal}
+        apiCall={() => deleteCountry(selectedCountry)}
+        message="¿Esta seguro que quiere eliminar este pais?"
+        tittle="Eliminar Pais"
+      />    
+        </>
+
     );
 }
 

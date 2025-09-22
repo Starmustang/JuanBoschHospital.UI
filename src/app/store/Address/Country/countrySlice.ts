@@ -7,14 +7,23 @@ import { MainStore } from "../../index";
 export interface CountrySlice {
     countryList: Country[];
     countryDetailed: Country;
+    countryId: number;
     showCountryModal: boolean;
+    showDeleteModal: boolean;
+    selectedCountry: number;
     getCountryList: () => Promise<void>;
     getCountryDetailed: (id: number) => Promise<void>;
     createCountry: (country: Country) => Promise<void>;
     updateCountry: (country: Country) => Promise<void>;
     deleteCountry: (id: number) => Promise<void>;
-    handleOpenCountryModal: () => void;
+    
+    //create modal
+    handleOpenCountryModal: (id?: number) => void;
     handleCloseCountryModal: () => void;
+    
+    //delete modal
+    handleOpenDeleteModal: (id: number) => void;
+    handleCloseDeleteModal: () => void;
 }
 
 export const createCountrySlice: StateCreator<MainStore, [], [], CountrySlice> = (set, get) => ({
@@ -24,7 +33,19 @@ export const createCountrySlice: StateCreator<MainStore, [], [], CountrySlice> =
         countryLanguage: "",
         countryCurrency: ""
     },
+    countryId: 0,
     showCountryModal: false,
+    showDeleteModal: false,
+    selectedCountry: 0,
+
+    handleOpenDeleteModal: (id?: number) => {
+        set({selectedCountry: id || undefined});
+        set({showDeleteModal: true});
+    },
+    handleCloseDeleteModal: () => {
+        set({showDeleteModal: false, });
+    },
+    
     getCountryList: async () => {
         try {
             const response = await axiosMain.get('/country');
@@ -75,10 +96,10 @@ export const createCountrySlice: StateCreator<MainStore, [], [], CountrySlice> =
             toast.error('Error al eliminar el pais');
         }
     },
-    handleOpenCountryModal: () => {
-        set({showCountryModal: true});
+    handleOpenCountryModal: (id?: number) => {
+        set({showCountryModal: true, countryId: id || undefined});
     },
     handleCloseCountryModal: () => {
-        set({showCountryModal: false});
+        set({showCountryModal: false, countryId: undefined});
     },
 })

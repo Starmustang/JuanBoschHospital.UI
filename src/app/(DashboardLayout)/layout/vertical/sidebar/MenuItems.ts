@@ -105,17 +105,10 @@ const Menuitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-        title: "Doctores",
+        title: "Pais",
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
-        href: "/address/doctorAddress",
-      },
-      {
-        id: uniqueId(),
-        title: "Municipio",
-        icon: 'screencast-2-line-duotone',    
-        bgcolor: "primary",
-        href: "/address/municipality",
+        href: "/address/country",
       },
       {
         id: uniqueId(),
@@ -126,6 +119,13 @@ const Menuitems: MenuitemsType[] = [
       },
       {
         id: uniqueId(),
+        title: "Municipio",
+        icon: 'screencast-2-line-duotone',    
+        bgcolor: "primary",
+        href: "/address/municipality",
+      },
+      {
+        id: uniqueId(),
         title: "Sector",
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
@@ -133,11 +133,11 @@ const Menuitems: MenuitemsType[] = [
       },
       {
         id: uniqueId(),
-        title: "Pais",
+        title: "Doctores",
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
-        href: "/address/country",
-      }
+        href: "/address/doctorAddress",
+      },
     ]
   },
   {
