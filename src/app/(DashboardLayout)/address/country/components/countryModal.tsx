@@ -5,7 +5,13 @@ import { useMainStore } from "@/app/store";
 import { Country } from "../../../types/Address/country/country";
 
 const CountryModal = () => {
-    const formMethods = useForm<Country>();
+    const formMethods = useForm<Country>({
+        defaultValues: {
+            countryName: "",
+            countryLanguage: "",
+            countryCurrency: ""
+        }
+    });
     const { handleSubmit, reset } = formMethods;
     const {showCountryModal, handleCloseCountryModal, createCountry} = useMainStore();
     
@@ -14,6 +20,7 @@ const CountryModal = () => {
         handleCloseCountryModal();
     }
     const onSubmit = (data: Country) => {
+        console.log("data: ",data);
         createCountry(data);
         btnClose();
     }

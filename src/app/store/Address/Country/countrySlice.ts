@@ -47,7 +47,7 @@ export const createCountrySlice: StateCreator<MainStore, [], [], CountrySlice> =
     },
     createCountry: async (country: Country) => {
         try {
-            const response = await axiosMain.post('/country', country);
+            await axiosMain.post('/country', country);
             get().getCountryList();
             toast.success('Pais creado');
         } catch (error) {

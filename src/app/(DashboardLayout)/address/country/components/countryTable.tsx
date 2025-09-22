@@ -15,6 +15,7 @@ const CountryTable = () => {
 
     useEffect(() => {
         getCountryList();
+        console.log("countryList: ",countryList);
     }, [getCountryList]);
 
     const [columnFilters, setColumnFilters] = React.useState<any>([]);
