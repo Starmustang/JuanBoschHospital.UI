@@ -4,15 +4,20 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { Typography } from "@mui/material";
 import { useTableWithSearch } from "@/app/components/usetableWithUser/useTableWithUser";
 import TableApp from "@/app/components/tableApp/tableApp";
-import { useState } from "react";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import TableActions from '@/app/components/tableApp/tableActions';
+import DeleteEntityModal from '@/app/components/modal/DeleteEntityModal';
 import formatedDate from "@/utils/function/formatedDate";
 
 const columnHelper = createColumnHelper<DateMedic>();
 const DateMedicTable = () => {
-    const {dateMedicList} = useMainStore();
+        const { dateMedicList, getDateMedicList, handleOpenDateMedicModal, handleOpenDeleteModal, showDeleteModal, handleCloseDeleteModal, deleteDateMedic, selectedDateMedic } = useMainStore();
+
+    useEffect(() => {
+        getDateMedicList();
+    }, [getDateMedicList]);
     const [columnFilters, setColumnFilters] = React.useState<any>([]);
-    const columns = React.useMemo(() => [
+        const columns = useMemo(() => [
         columnHelper.accessor('patientName', {
             header: 'Nombre',
             cell: (info) => (
@@ -54,7 +59,17 @@ const DateMedicTable = () => {
             ),
         }),
        
-    ], []);
+            columnHelper.display({
+            id: 'actions',
+            header: 'Acciones',
+            cell: ({ row }) => (
+                <TableActions
+                    onEdit={() => handleOpenDateMedicModal(row.original.dateMedicId)}
+                    onDelete={() => handleOpenDeleteModal(row.original.dateMedicId || 0)}
+                />
+            ),
+        }),
+    ], [handleOpenDateMedicModal, handleOpenDeleteModal]);
 
     const {table, globalFilter, setGlobalFilter} = useTableWithSearch({
         data: dateMedicList,
@@ -74,7 +89,16 @@ const DateMedicTable = () => {
         }
     })
     return (
-        <TableApp table={table} globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
+                <>
+            <TableApp table={table} globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
+            <DeleteEntityModal
+                show={showDeleteModal}
+                handleClose={handleCloseDeleteModal}
+                apiCall={() => deleteDateMedic(selectedDateMedic)}
+                message="¿Está seguro que quiere eliminar esta cita?"
+                tittle="Eliminar Cita"
+            />
+        </>
     );
 }
 export default DateMedicTable;

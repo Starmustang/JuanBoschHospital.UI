@@ -1,21 +1,115 @@
 import { Doctor } from "@/app/(DashboardLayout)/types/Doctor/Doctor";
 import { MainStore } from "..";
 import { StateCreator } from "zustand";
+import axiosMain from "@/app/services";
+import { toast } from "react-toastify";
 
 export interface DoctorSlice {
     doctorList: Doctor[];
+    doctorDetailed: Doctor;
     showDoctorModal: boolean;
-    handleOpenDoctorModal: () => void;
+    doctorId?: number;
+    showDeleteModal: boolean;
+    selectedDoctor: number;
+    getDoctorList: () => Promise<void>;
+    getDoctorDetailed: (id: number) => Promise<void>;
+    createDoctor: (doctor: Doctor) => Promise<void>;
+    updateDoctor: (doctor: Doctor) => Promise<void>;
+    deleteDoctor: (id: number) => Promise<void>;
+
+    //edit and create modal
+    handleOpenDoctorModal: (id?: number) => void;
     handleCloseDoctorModal: () => void;
+
+    //delete modal
+    handleOpenDeleteModal: (id: number) => void;
+    handleCloseDeleteModal: () => void;
 }
+
+const url = '/Doctor';
 
 export const createDoctorSlice: StateCreator<MainStore, [], [], DoctorSlice> = (set, get) => ({
     doctorList: [],
+    doctorDetailed: {
+        doctorId: 0,
+        doctorName: '',
+        doctorLastName: '',
+        doctorPhone: '',
+        doctorEmail: '',
+        doctorIdCard: '',
+        doctorPassport: '',
+        doctorSpeciality: '',
+        doctorAddressId: 0,
+        doctorHouseNumber: '',
+        doctorStreet: '',
+        doctorExecatur: ''
+    },
+    doctorId: 0,
     showDoctorModal: false,
-    handleOpenDoctorModal: () => {
-        set({showDoctorModal: true});
+    showDeleteModal: false,
+    selectedDoctor: 0,
+
+    handleOpenDoctorModal: (id?: number) => {
+        set({ showDoctorModal: true, doctorId: id || undefined });
     },
     handleCloseDoctorModal: () => {
-        set({showDoctorModal: false})
-    }
-})
+        set({ showDoctorModal: false, doctorId: undefined });
+    },
+    handleOpenDeleteModal: (id: number) => {
+        set({ selectedDoctor: id, showDeleteModal: true });
+    },
+    handleCloseDeleteModal: () => {
+        set({ showDeleteModal: false });
+    },
+
+    getDoctorList: async () => {
+        try {
+            const response = await axiosMain.get(url);
+            set({ doctorList: response.data });
+            toast.success('Lista de doctores obtenida');
+        } catch (error) {
+            console.log(error);
+            toast.error('Error al obtener la lista de doctores');
+        }
+    },
+    getDoctorDetailed: async (id: number) => {
+        try {
+            const response = await axiosMain.get(`${url}/${id}`);
+            set({ doctorDetailed: response.data });
+            toast.success('Doctor obtenido');
+        } catch (error) {
+            console.log(error);
+            toast.error('Error al obtener el doctor');
+        }
+    },
+    createDoctor: async (doctor: Doctor) => {
+        try {
+            await axiosMain.post(url, doctor);
+            get().getDoctorList();
+            toast.success('Doctor creado');
+        } catch (error) {
+            console.log(error);
+            toast.error('Error al crear el doctor');
+        }
+    },
+    updateDoctor: async (doctor: Doctor) => {
+        try {
+            await axiosMain.put(`${url}/${doctor.doctorId}`, doctor);
+            get().getDoctorList();
+            toast.success('Doctor actualizado');
+        } catch (error) {
+            console.log(error);
+            toast.error('Error al actualizar el doctor');
+        }
+    },
+    deleteDoctor: async (id: number) => {
+        try {
+            await axiosMain.delete(`${url}/${id}`);
+            get().getDoctorList();
+            toast.success('Doctor eliminado');
+        } catch (error) {
+            console.log(error);
+            toast.error('Error al eliminar el doctor');
+        }
+    },
+});
