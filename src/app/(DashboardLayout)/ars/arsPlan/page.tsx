@@ -12,7 +12,7 @@ const ArsPlanPage = () => {
         <PageContainer title="Plan de salud">
             <DashboardCard title="Plan de salud"
             action={
-                <Button variant="contained" onClick={handleOpenArsPlanModal}>
+                <Button variant="contained" onClick={() => handleOpenArsPlanModal()}>
                     Agregar plan de salud
                 </Button>
             }
