@@ -11,7 +11,7 @@ const PatientDirectionPage = () => {
     return (
         <PageContainer title="Direcciones">
             <DashboardCard title="Direcciones" action={
-                <Button variant="contained" onClick={handleOpenPatientDirectionModal} sx={{mb: 2}}>Registrar direccion</Button>
+                <Button variant="contained" onClick={() => handleOpenPatientDirectionModal()} sx={{mb: 2}}>Registrar direccion</Button>
             }>
                 <PatientDirectionTable/>
             </DashboardCard>

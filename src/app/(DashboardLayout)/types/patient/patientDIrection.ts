@@ -14,3 +14,11 @@ export interface PatientDirectionPost {
     houseStreet: string,
     sectorId: number
 }
+
+export interface PatientDirectionPut {
+    addressId: number,
+    houseNumber: string,
+    houseStreet: string,
+    sectorId: number
+}
+

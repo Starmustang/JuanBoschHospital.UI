@@ -4,10 +4,15 @@ import { useFormContext } from "react-hook-form";
 import AutocompleteApp from "@/app/components/autocomplete/autocompleteApp";
 import TextFieldApp from "@/app/components/textfieldApp/textfieldApp";
 import { useMainStore } from "@/app/store";
+import { useEffect } from "react";
 
 const PatientDirectionForm = () => {
     const { control } = useFormContext();
-    const { sectorList } = useMainStore();
+    const { sectorList, getSectorList } = useMainStore();
+
+    useEffect(() => {
+        getSectorList();
+    }, [getSectorList]);
 
     const sectorOptions = sectorList.map(sector => ({
         id: sector.sectorId,
