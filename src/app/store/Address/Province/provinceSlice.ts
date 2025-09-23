@@ -25,7 +25,7 @@ export interface ProvinceSlice {
     handleOpenDeleteModal: (id: number) => void;
     handleCloseDeleteModal: () => void;
 }
-
+const url = '/province';
 export const createProvinceSlice: StateCreator<MainStore, [], [], ProvinceSlice> = (set, get) => ({
     provinceList: [],
     provinceDetailed: {
@@ -52,7 +52,7 @@ export const createProvinceSlice: StateCreator<MainStore, [], [], ProvinceSlice>
 
     getProvinceList: async () => {
         try {
-            const response = await axiosMain.get('/province');
+            const response = await axiosMain.get(url);
             set({ provinceList: response.data });
             toast.success('Lista de provincias obtenida');
         } catch (error) {
@@ -62,7 +62,7 @@ export const createProvinceSlice: StateCreator<MainStore, [], [], ProvinceSlice>
     },
     getProvinceDetailed: async (id: number) => {
         try {
-            const response = await axiosMain.get(`/province/${id}`);
+            const response = await axiosMain.get(`${url}/${id}`);
             set({ provinceDetailed: response.data });
             toast.success('Provincia obtenida');
         } catch (error) {
@@ -72,7 +72,7 @@ export const createProvinceSlice: StateCreator<MainStore, [], [], ProvinceSlice>
     },
     createProvince: async (province: Province) => {
         try {
-            await axiosMain.post('/province', province);
+            await axiosMain.post(url, province);
             get().getProvinceList();
             toast.success('Provincia creada');
         } catch (error) {
@@ -82,7 +82,7 @@ export const createProvinceSlice: StateCreator<MainStore, [], [], ProvinceSlice>
     },
     updateProvince: async (province: Province) => {
         try {
-            await axiosMain.put(`/province/${province.provinceId}`, province);
+            await axiosMain.put(`${url}/${province.provinceId}`, province);
             get().getProvinceList();
             toast.success('Provincia actualizada');
         } catch (error) {
@@ -92,7 +92,7 @@ export const createProvinceSlice: StateCreator<MainStore, [], [], ProvinceSlice>
     },
     deleteProvince: async (id: number) => {
         try {
-            await axiosMain.delete(`/province/${id}`);
+            await axiosMain.delete(`${url}/${id}`);
             get().getProvinceList();
             toast.success('Provincia eliminada');
         } catch (error) {
