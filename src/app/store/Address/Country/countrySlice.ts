@@ -10,7 +10,7 @@ export interface CountrySlice {
     countryId: number;
     showCountryModal: boolean;
     showDeleteModal: boolean;
-    selectedCountry: number;
+    selectedDeleteCountryId: number;
     getCountryList: () => Promise<void>;
     getCountryDetailed: (id: number) => Promise<void>;
     createCountry: (country: Country) => Promise<void>;
@@ -36,14 +36,13 @@ export const createCountrySlice: StateCreator<MainStore, [], [], CountrySlice> =
     countryId: 0,
     showCountryModal: false,
     showDeleteModal: false,
-    selectedCountry: 0,
+    selectedDeleteCountryId: 0,
 
-    handleOpenDeleteModal: (id?: number) => {
-        set({selectedCountry: id || undefined});
-        set({showDeleteModal: true});
+    handleOpenDeleteModal: (id: number) => {
+        set({ selectedDeleteCountryId: id, showDeleteModal: true });
     },
     handleCloseDeleteModal: () => {
-        set({showDeleteModal: false, });
+        set({ showDeleteModal: false, selectedDeleteCountryId: 0 });
     },
     
     getCountryList: async () => {
@@ -89,6 +88,7 @@ export const createCountrySlice: StateCreator<MainStore, [], [], CountrySlice> =
     deleteCountry: async (id: number) => {
         try {
             await axiosMain.delete(`/country/${id}`);
+            console.log("Pais eliminado: ", id);
             get().getCountryList();
             toast.success('Pais eliminado');
         } catch (error) {

@@ -18,7 +18,7 @@ export interface MunicipalitySlice {
     deleteMunicipality: (id: number) => Promise<void>;
     handleOpenMunicipalityModal: (id?: number) => void;
     handleCloseMunicipalityModal: () => void;
-    handleOpenDeleteModal: (id: number) => void;
+    handleOpenDeleteModal: (id?: number) => void;
     handleCloseDeleteModal: () => void;
 }
 
@@ -39,8 +39,8 @@ export const createMunicipalitySlice: StateCreator<MainStore, [], [], Municipali
     handleCloseMunicipalityModal: () => {
         set({showMunicipalityModal: false, municipalityId: undefined});
     },
-        handleOpenDeleteModal: (id: number) => {
-        set({selectedMunicipality: id, showDeleteModal: true});
+        handleOpenDeleteModal: (id?: number) => {
+        set({selectedMunicipality: id || undefined, showDeleteModal: true});
     },
         handleCloseDeleteModal: () => {
         set({showDeleteModal: false});

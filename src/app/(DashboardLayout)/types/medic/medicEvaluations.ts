@@ -18,3 +18,5 @@ export interface MedicEvaluationsPost {
     heightEva: string,
     previousSickNessEva: string 
 }
+
+export type MedicEvaluationsPut = MedicEvaluations;

@@ -13,12 +13,11 @@ import DeleteEntityModal from "@/app/components/modal/DeleteEntityModal";
 const columnHelper = createColumnHelper<Country>()
 
 const CountryTable = () => {
-    const { countryList, getCountryList, showDeleteModal, handleCloseDeleteModal, selectedCountry, 
+    const { countryList, getCountryList, showDeleteModal, handleCloseDeleteModal, selectedDeleteCountryId, 
         deleteCountry, handleOpenDeleteModal, handleOpenCountryModal } = useMainStore();
 
     useEffect(() => {
-        getCountryList();
-        console.log("countryList: ",countryList);
+        getCountryList();        
     }, [getCountryList]);
 
     const [columnFilters, setColumnFilters] = React.useState<any>([]);
@@ -53,7 +52,7 @@ const CountryTable = () => {
             cell: ({row}) => (
                 <TableActions
                     onEdit={() => handleOpenCountryModal(row.original.countryId)}
-                    onDelete={() => handleOpenDeleteModal(row.original.countryId || 0)}
+                    onDelete={() => handleOpenDeleteModal(row.original.countryId)}
                 />
             ),
         }), 
@@ -84,7 +83,7 @@ const CountryTable = () => {
         <DeleteEntityModal
         show={showDeleteModal}
         handleClose={handleCloseDeleteModal}
-        apiCall={() => deleteCountry(selectedCountry)}
+        apiCall={() => deleteCountry(selectedDeleteCountryId)}
         message="¿Esta seguro que quiere eliminar este pais?"
         tittle="Eliminar Pais"
       />    
