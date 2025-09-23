@@ -40,7 +40,6 @@ export const useMainStore = create(
       ...createPatientSlice(set, get, store),
       ...createCountrySlice(set, get, store),
       ...createProvinceSlice(set, get, store),
-      ...createMunicipalitySlice(set, get, store),
       ...createSectorSlice(set, get, store),
       ...createBloodSlice(set, get, store),
       ...createDateDoctorSlice(set, get, store),
@@ -53,6 +52,7 @@ export const useMainStore = create(
       ...createArsPlanSlice(set, get, store),
       ...createDoctorEnsuranceSlice(set, get, store),
       ...createPatientDirectionSlice(set, get, store),
+      ...createMunicipalitySlice(set, get, store),
     }),
     { name: "MainStore" }
   )

@@ -8,6 +8,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import WorkIcon from '@mui/icons-material/Work';
 import { styled } from '@mui/material/styles';
+import { useEffect } from "react";
 
 const SectionHeader = styled(Box)(({ theme }) => ({
     display: 'flex',
@@ -31,12 +32,16 @@ const FormSection = styled(Paper)(({ theme }) => ({
 
 const DoctorForm = () => {
     const { control } = useFormContext();
-    const { doctorAddressList } = useMainStore();
+    const { doctorAddressList, getDoctorAddressList } = useMainStore();
 
     const addressOptions = doctorAddressList.map(address => ({
         id: address.doctorAddressId,
         name: `${address.doctorStreet}, ${address.doctorHouseNumber}`
     }));
+
+    useEffect(() => {
+        getDoctorAddressList();
+    }, [getDoctorAddressList]);
 
     return (
         <Box sx={{ width: '100%', p: 0 }}>
@@ -75,7 +80,7 @@ const DoctorForm = () => {
                 <Divider sx={{ mb: 3 }} />
                 <Grid container spacing={3}>
                     <Grid size={{ xs: 12, md: 6 }}><TextFieldApp name="doctorSpeciality" label="Especialidad" control={control} /></Grid>
-                    <Grid size={{ xs: 12, md: 6 }}><TextFieldApp name="doctorExecatur" label="Execatur" control={control} /></Grid>
+                    {/* <Grid size={{ xs: 12, md: 6 }}><TextFieldApp name="doctorExecatur" label="Execatur" control={control} /></Grid> */}
                 </Grid>
             </FormSection>
         </Box>

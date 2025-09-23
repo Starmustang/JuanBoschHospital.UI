@@ -1,4 +1,4 @@
-import { Doctor } from "@/app/(DashboardLayout)/types/Doctor/Doctor";
+import { Doctor, DoctorPost, DoctorPut } from "@/app/(DashboardLayout)/types/Doctor/Doctor";
 import { MainStore } from "..";
 import { StateCreator } from "zustand";
 import axiosMain from "@/app/services";
@@ -13,8 +13,8 @@ export interface DoctorSlice {
     selectedDoctor: number;
     getDoctorList: () => Promise<void>;
     getDoctorDetailed: (id: number) => Promise<void>;
-    createDoctor: (doctor: Doctor) => Promise<void>;
-    updateDoctor: (doctor: Doctor) => Promise<void>;
+    createDoctor: (doctor: DoctorPost) => Promise<void>;
+    updateDoctor: (doctor: DoctorPut) => Promise<void>;
     deleteDoctor: (id: number) => Promise<void>;
 
     //edit and create modal
@@ -82,7 +82,7 @@ export const createDoctorSlice: StateCreator<MainStore, [], [], DoctorSlice> = (
             toast.error('Error al obtener el doctor');
         }
     },
-    createDoctor: async (doctor: Doctor) => {
+    createDoctor: async (doctor: DoctorPost) => {
         try {
             await axiosMain.post(url, doctor);
             get().getDoctorList();
@@ -92,7 +92,7 @@ export const createDoctorSlice: StateCreator<MainStore, [], [], DoctorSlice> = (
             toast.error('Error al crear el doctor');
         }
     },
-    updateDoctor: async (doctor: Doctor) => {
+    updateDoctor: async (doctor: DoctorPut) => {
         try {
             await axiosMain.put(`${url}/${doctor.doctorId}`, doctor);
             get().getDoctorList();
