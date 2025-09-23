@@ -11,7 +11,7 @@ const MunicipalityPage = () => {
     return (
         <PageContainer title="Municipios">
             <DashboardCard title="Municipios" action={
-                <Button variant="contained" onClick={handleOpenMunicipalityModal}>
+                <Button variant="contained" onClick={() => handleOpenMunicipalityModal()}>
                     Agregar municipio
                 </Button>
             }>

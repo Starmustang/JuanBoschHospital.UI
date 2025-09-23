@@ -16,6 +16,7 @@ interface ControlledAutocompleteProps {
   limitTags?: number;
   sx?: any;
   onChange?: (event: any, newValue: any) => void;
+  onChangeCallback?: () => void;
   onKeyDown?: (event: any) => void;
   filteroptions?: (options: any, state: any) => any;
 }
@@ -33,6 +34,7 @@ const AutocompleteApp: React.FC<ControlledAutocompleteProps> = ({
   sx = {},
   onChange = () => {},
   onKeyDown = () => {},
+  onChangeCallback = () => {},
   filteroptions = () => {}
 }) => {
   return (
@@ -72,10 +74,12 @@ const AutocompleteApp: React.FC<ControlledAutocompleteProps> = ({
                     ? newValue.map(item => (item as any)?.id || 0)
                     : [];
                   field.onChange(ids);
+                  if (onChangeCallback) onChangeCallback();
                 } else {
                   // For single selection, extract single ID
                   const singleValue = newValue as { id: number | string; name: string } | null;
                   field.onChange(singleValue?.id || 0);
+                  if (onChangeCallback) onChangeCallback();
                 }
               }}
               disabled={disabled}

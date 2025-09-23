@@ -14,7 +14,7 @@ function ProvincePage() {
     const { handleOpenProvinceModal } = useMainStore();
     const btnOpenProvinceModal = () => {
         return (
-            <Button variant="contained" onClick={handleOpenProvinceModal}>
+            <Button variant="contained" onClick={() => handleOpenProvinceModal()}>
                 Agregar provincia
             </Button>
         )

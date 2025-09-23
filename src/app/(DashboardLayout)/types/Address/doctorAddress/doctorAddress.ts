@@ -1,14 +1,23 @@
 export interface DoctorAddress {
-    doctorId?: number,
-    doctorName: string,
-    doctorLastName: string,
-    doctorPhone: string,
-    doctorEmail: string,
-    doctorIdCard: string,
-    doctorPassport: string,
-    doctorSpeciality: string,
     doctorAddressId: number,
     doctorHouseNumber: string,
     doctorStreet: string,
-    doctorExecatur: string
+    sectorId: number,
+    sectorName: string,
+    countryId?: number,
+    provinceId?: number,
+    municipalityId?: number
+}
+
+export interface DoctorAddressPost {
+    doctorHouseNumber: string,
+    doctorStreet: string,
+    sectorId: number
+}
+
+export interface DoctorAddressPut {
+    doctorAddressId: number,
+    doctorHouseNumber: string,
+    doctorStreet: string,
+    sectorId: number
 }

@@ -14,7 +14,7 @@ function CountryPage() {
             <DashboardCard 
                 title="Paises" 
                 action={
-                    <Button variant="contained" onClick={handleOpenCountryModal}>
+                    <Button variant="contained" onClick={() => handleOpenCountryModal()}>
                         Agregar pais
                     </Button>
                 }

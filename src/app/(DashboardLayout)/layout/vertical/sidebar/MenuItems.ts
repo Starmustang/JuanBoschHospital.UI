@@ -35,7 +35,7 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: "Doctor",
-    icon: 'screencast-2-line-duotone',    
+    icon: 'stethoscope-outline',    
     bgcolor: "primary",
     href: "/doctor",
     children: [
@@ -55,7 +55,7 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: "Paciente",
-    icon: 'screencast-2-line-duotone',    
+    icon: 'user-hand-up-outline',    
     bgcolor: "primary",
     href: "/patient",
     children: [
@@ -75,7 +75,7 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: "Sangre",
-    icon: 'screencast-2-line-duotone',    
+    icon: 'dropper-minimalistic-line-duotone',    
     bgcolor: "primary",
     href: "/blood",
   },
@@ -84,14 +84,14 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: "Evaluaciones Medicas",
-    icon: 'screencast-2-line-duotone',    
+    icon: 'book-2-outline',    
     bgcolor: "primary",
     href: "/medic/medicEvaluation",
   },
   {
     id: uniqueId(),
     title: "Registros Medicos",
-    icon: 'screencast-2-line-duotone',    
+    icon: 'notebook-bookmark-outline',    
     bgcolor: "primary",
     href: "/medic/medicRecords",
   },
@@ -99,23 +99,16 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: "Direcciones",
-    icon: 'screencast-2-line-duotone',    
+    icon: 'global-outline',    
     bgcolor: "primary",
     href: "/province",
     children: [
       {
         id: uniqueId(),
-        title: "Doctores",
+        title: "Pais",
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
-        href: "/address/doctorAddress",
-      },
-      {
-        id: uniqueId(),
-        title: "Municipio",
-        icon: 'screencast-2-line-duotone',    
-        bgcolor: "primary",
-        href: "/address/municipality",
+        href: "/address/country",
       },
       {
         id: uniqueId(),
@@ -126,6 +119,13 @@ const Menuitems: MenuitemsType[] = [
       },
       {
         id: uniqueId(),
+        title: "Municipio",
+        icon: 'screencast-2-line-duotone',    
+        bgcolor: "primary",
+        href: "/address/municipality",
+      },
+      {
+        id: uniqueId(),
         title: "Sector",
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
@@ -133,30 +133,30 @@ const Menuitems: MenuitemsType[] = [
       },
       {
         id: uniqueId(),
-        title: "Pais",
+        title: "Doctores",
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
-        href: "/address/country",
-      }
+        href: "/address/doctorAddress",
+      },
     ]
   },
   {
     id: uniqueId(),
-    title: "Fecha de medicion",
-    icon: 'screencast-2-line-duotone',    
+    title: "cita medica",
+    icon: 'calendar-date-outline',    
     bgcolor: "primary",
     href: "/dates/dateMedic",
     children: [
       {
         id: uniqueId(),
-        title: "Fecha de medicion",
+        title: "Cita medica",
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
         href: "/dates/dateMedic",
       },
       {
         id: uniqueId(),
-        title: "Fecha de doctor",
+        title: "Cita de doctor",
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
         href: "/dates/dateDoctor",
@@ -166,7 +166,7 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: "Plan de salud",
-    icon: 'screencast-2-line-duotone',    
+    icon: 'medical-kit-outline',    
     bgcolor: "primary",
     href: "/ars/arsPlan",
     children: [

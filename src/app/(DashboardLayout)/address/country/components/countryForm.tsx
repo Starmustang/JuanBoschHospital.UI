@@ -1,10 +1,10 @@
 "use client";
 import TextFieldApp from "@/app/components/textfieldApp/textfieldApp";
 import { Grid2 as Grid } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 const CountryForm = () => {
-    const { control } = useForm();
+    const { control } = useFormContext();
     
     return (
         <Grid container spacing={2}>
