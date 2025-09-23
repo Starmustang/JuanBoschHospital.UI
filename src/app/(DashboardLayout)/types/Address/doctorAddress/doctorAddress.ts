@@ -3,7 +3,10 @@ export interface DoctorAddress {
     doctorHouseNumber: string,
     doctorStreet: string,
     sectorId: number,
-    sectorName: string
+    sectorName: string,
+    countryId?: number,
+    provinceId?: number,
+    municipalityId?: number
 }
 
 export interface DoctorAddressPost {

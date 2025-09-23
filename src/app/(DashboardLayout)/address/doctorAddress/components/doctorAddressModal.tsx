@@ -7,15 +7,22 @@ import { DoctorAddress, DoctorAddressPost, DoctorAddressPut } from "@/app/(Dashb
 import { useEffect } from "react";
 
 const DoctorAddressModal = () => {
-        const { showDoctorAddressModal, handleCloseDoctorAddressModal, getSectorList, createDoctorAddress, updateDoctorAddress, doctorAddressId, getDoctorAddressDetailed, doctorAddressDetailed } = useMainStore();
-        const formMethods = useForm<DoctorAddress>({ 
+            const {
+        showDoctorAddressModal, handleCloseDoctorAddressModal, getSectorList, createDoctorAddress, updateDoctorAddress, 
+        doctorAddressId, getDoctorAddressDetailed, doctorAddressDetailed, getCountryList, getProvinceList, getMunicipalityList,
+        countryList, provinceList, municipalityList, sectorList
+    } = useMainStore();
+            const formMethods = useForm<DoctorAddress>({ 
         defaultValues: { 
             doctorHouseNumber: '', 
             doctorStreet: '', 
-            sectorId: 0 
+            sectorId: 0,
+            countryId: 0,
+            provinceId: 0,
+            municipalityId: 0
         } 
     });
-    const { handleSubmit, reset } = formMethods;
+        const { handleSubmit, reset, setValue } = formMethods;
 
     const onSubmit = (data: DoctorAddress) => {
         if (doctorAddressId) {
@@ -42,9 +49,12 @@ const DoctorAddressModal = () => {
         reset();
     };
 
-    useEffect(() => {
+        useEffect(() => {
+        getCountryList();
+        getProvinceList();
+        getMunicipalityList();
         getSectorList();
-    }, [getSectorList]);
+    }, [getCountryList, getProvinceList, getMunicipalityList, getSectorList]);
 
     useEffect(() => {
         if (doctorAddressId) {
@@ -53,12 +63,25 @@ const DoctorAddressModal = () => {
     }, [doctorAddressId, getDoctorAddressDetailed]);
 
     useEffect(() => {
-        if (doctorAddressDetailed && doctorAddressId) {
-            formMethods.setValue('doctorHouseNumber', doctorAddressDetailed.doctorHouseNumber);
-            formMethods.setValue('doctorStreet', doctorAddressDetailed.doctorStreet);
-            formMethods.setValue('sectorId', doctorAddressDetailed.sectorId);
+        // Wait until all data is loaded before setting form values for an edit
+        if (doctorAddressDetailed && doctorAddressId && countryList.length > 0 && provinceList.length > 0 && municipalityList.length > 0 && sectorList.length > 0) {
+            const sector = sectorList.find(s => s.sectorId === doctorAddressDetailed.sectorId);
+            if (sector) {
+                const municipality = municipalityList.find(m => m.municipalityId === sector.municipalityId);
+                if (municipality) {
+                    const province = provinceList.find(p => p.provinceId === municipality.provinceId);
+                    if (province) {
+                        setValue('countryId', province.countryId);
+                        setValue('provinceId', province.provinceId);
+                        setValue('municipalityId', municipality.municipalityId);
+                        setValue('sectorId', sector.sectorId);
+                        setValue('doctorHouseNumber', doctorAddressDetailed.doctorHouseNumber);
+                        setValue('doctorStreet', doctorAddressDetailed.doctorStreet);
+                    }
+                }
+            }
         }
-    }, [doctorAddressDetailed, doctorAddressId, formMethods.setValue]);
+    }, [doctorAddressDetailed, doctorAddressId, countryList, provinceList, municipalityList, sectorList, setValue]);
 
     return (
         <Dialog
