@@ -1,38 +1,68 @@
 'use client'
 import { FormProvider, useForm } from "react-hook-form";
-import { blood } from "../../types/Blood/blood";
+import { Blood, BloodPost, BloodPut } from "../../types/Blood/blood";
 import { useMainStore } from "@/app/store";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import BloodForm from "./bloodForm";
+import { useEffect } from "react";
+
 const BloodModal = () => {
-    const formMethods = useForm<blood>();
-    const { handleSubmit, reset } = formMethods;
-    const {showbloodModal, handleCloseBloodModal,} = useMainStore();
-    
-    const onSubmit = (data: blood) => {
-        console.log(data);
-        btnClose();
-    }
+    const { showBloodModal, handleCloseBloodModal, bloodId, getBloodDetailed, bloodDetailed, createBlood, updateBlood } = useMainStore();
+    const formMethods = useForm<Blood>();
+    const { handleSubmit, reset, setValue } = formMethods;
+
     const btnClose = () => {
         reset();
         handleCloseBloodModal();
     }
+
+    const onSubmit = (data: Blood) => {
+        const bloodData: BloodPost = {
+            bloodType: data.bloodType,
+            consentBlood: data.consentBlood,
+        };
+
+        if (bloodId) {
+            const bloodToUpdate: BloodPut = {
+                bloodId: bloodId,
+                ...bloodData,
+            };
+            updateBlood(bloodToUpdate);
+        } else {
+            createBlood(bloodData);
+        }
+        btnClose();
+    }
+
+    useEffect(() => {
+        if (bloodId) {
+            getBloodDetailed(bloodId);
+        }
+    }, [bloodId, getBloodDetailed]);
+
+    useEffect(() => {
+        if (bloodDetailed && bloodId) {
+            setValue('bloodType', bloodDetailed.bloodType);
+            setValue('consentBlood', bloodDetailed.consentBlood);
+        }
+    }, [bloodDetailed, bloodId, setValue]);
+
     return (
         <Dialog
-        open={showbloodModal}
-        onClose={btnClose}
-        fullWidth
-        maxWidth="md"
+            open={showBloodModal}
+            onClose={btnClose}
+            fullWidth
+            maxWidth="sm"
         >
-            <DialogTitle>Sangre</DialogTitle>
+            <DialogTitle>{bloodId ? 'Editar' : 'Agregar'} Tipo de Sangre</DialogTitle>
             <DialogContent>
                 <FormProvider {...formMethods}>
-                <BloodForm />
+                    <BloodForm />
                 </FormProvider>
             </DialogContent>
             <DialogActions>
                 <Button color="error" variant="contained" onClick={btnClose}>Cancelar</Button>
-                <Button color="primary" variant="contained" onClick={handleSubmit(onSubmit)}>Guardar</Button>
+                <Button color="primary" variant="contained" onClick={handleSubmit(onSubmit)}>{bloodId ? 'Editar' : 'Guardar'}</Button>
             </DialogActions>
         </Dialog>
     );

@@ -12,7 +12,7 @@ const BloodPage = () => {
         <PageContainer title="Sangre">
             <DashboardCard title="Sangre"
             action={
-                <Button variant="contained" onClick={handleOpenBloodModal}>
+                <Button variant="contained" onClick={() => handleOpenBloodModal()}>
                     Agregar tipo de sangre
                 </Button>
             }
