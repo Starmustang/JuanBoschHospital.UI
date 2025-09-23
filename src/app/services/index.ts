@@ -2,7 +2,7 @@ import axios from 'axios';
  import { toast } from 'react-toastify';
 
 export const axiosMain = axios.create({
-  baseURL: 'http://localhost:5028/api/',
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   // headers: {  "Authorization" : `Bearer xxxxxxxx`
 });
 // if (process.env.REACT_APP_ENV === 'local') {
