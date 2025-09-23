@@ -11,7 +11,7 @@ const ArsEnsurancePage = () => {
     return (
         <PageContainer>
             <DashboardCard title="Aseguradoras" action={
-                <Button variant="contained" onClick={handleOpenArsEnsuranceModal}>
+                <Button variant="contained" onClick={() => handleOpenArsEnsuranceModal()}>
                     Agregar aseguradora
                 </Button>
             }>

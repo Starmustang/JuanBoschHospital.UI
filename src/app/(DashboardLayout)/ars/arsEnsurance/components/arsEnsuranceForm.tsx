@@ -2,6 +2,8 @@
 import { Grid2 as Grid } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import TextFieldApp from "@/app/components/textfieldApp/textfieldApp";
+import DateTimePickerApp from "@/app/components/dateTimePickerApp/dateTimePickerApp";
+import TimePickerApp from "@/app/components/timePickerApp/timePickerApp";
 
 const ArsEnsuranceForm = () => {
     const { control } = useFormContext();
@@ -30,6 +32,7 @@ const ArsEnsuranceForm = () => {
                     label="Teléfono"
                     control={control}
                     fullWidth
+                    phoneFormat
                 />
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
@@ -38,6 +41,7 @@ const ArsEnsuranceForm = () => {
                     label="Teléfono 2"
                     control={control}
                     fullWidth
+                    phoneFormat
                 />
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
@@ -46,6 +50,7 @@ const ArsEnsuranceForm = () => {
                     label="Fax"
                     control={control}
                     fullWidth
+                    phoneFormat
                 />
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
@@ -57,11 +62,17 @@ const ArsEnsuranceForm = () => {
                 />
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
-                <TextFieldApp
+                <TimePickerApp
                     name="ensuranceSchedule"
-                    label="Horario"
+                    label="Horario de apertura"
                     control={control}
-                    fullWidth
+                />
+            </Grid>
+            <Grid size={{ xs: 12, md: 6 }}>
+                <DateTimePickerApp
+                    name="ensuranceUpdateDate"
+                    label="Fecha de Actualización"
+                    control={control}
                 />
             </Grid>
         </Grid>
