@@ -8,11 +8,18 @@ import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MedicalInformationIcon from '@mui/icons-material/MedicalInformation';
 import EventNoteIcon from '@mui/icons-material/EventNote';
-import { styled } from '@mui/material/styles';
+import { styled, Theme } from '@mui/material/styles';
 import AutocompleteApp from "@/app/components/autocomplete/autocompleteApp";
 import { useMainStore } from "@/app/store";
+import { useEffect } from "react";
+import { ArsPlan } from "../../types/Ars/ArsPlan/arsPlan";
+import { PatientDirection } from "../../types/patient/patientDIrection";
+import { Blood } from "../../types/Blood/blood";
+import { MedicRecords } from "../../types/medic/medicRecords";
+import { Doctor } from "../../types/Doctor/Doctor";
+import { DateMedic } from "../../types/Dates/DateMedic/dateMedic";
 
-const SectionHeader = styled(Box)(({ theme }) => ({
+const SectionHeader = styled(Box)(({ theme }: { theme: Theme }) => ({
     display: 'flex',
     alignItems: 'center',
     marginBottom: theme.spacing(2),
@@ -25,7 +32,7 @@ const SectionHeader = styled(Box)(({ theme }) => ({
     }
 }));
 
-const FormSection = styled(Paper)(({ theme }) => ({
+const FormSection = styled(Paper)(({ theme }: { theme: Theme }) => ({
     padding: theme.spacing(3),
     marginBottom: theme.spacing(3),
     borderRadius: '10px',
@@ -34,18 +41,34 @@ const FormSection = styled(Paper)(({ theme }) => ({
 
 const PatientForm = () => {
     const { control } = useFormContext();
-    const { arsPlanList, patientDirectionList, bloodList, medicRecordsList, doctorList, dateMedicList } = useMainStore();
+    const { 
+        arsPlanList, getArsPlanList, 
+        patientDirectionList, getPatientDirectionList, 
+        bloodList, getBloodList, 
+        medicRecordsList, getMedicRecordsList, 
+        doctorList, getDoctorList, 
+        dateMedicList, getDateMedicList 
+    } = useMainStore();
 
-    const arsPlanOptions = arsPlanList.map(plan => ({ id: plan.arsPlansId, name: plan.arsPlansName }));
-    const patientDirectionOptions = patientDirectionList.map(dir => ({ id: dir.addressId, name: `${dir.houseStreet}, ${dir.sectorName}` }));
-    const bloodOptions = bloodList.map(b => ({ id: b.bloodId!, name: b.bloodType }));
-    const medicRecordsOptions = medicRecordsList.map(rec => ({ id: rec.recordId, name: `Cita con ${rec.patientName}` }));
-    const doctorOptions = doctorList.map(doc => ({ id: doc.doctorId!, name: `${doc.doctorName} ${doc.doctorLastName}` }));
-    const dateMedicOptions = dateMedicList.map(date => ({ id: date.dateMedicId, name: `Cita para ${date.patientName} el ${new Date(date.dateMedicDate).toLocaleDateString()}` }));
+    useEffect(() => {
+        getArsPlanList();
+        getPatientDirectionList();
+        getBloodList();
+        getMedicRecordsList();
+        getDoctorList();
+        getDateMedicList();
+    }, [getArsPlanList, getPatientDirectionList, getBloodList, getMedicRecordsList, getDoctorList, getDateMedicList]);
+
+    const arsPlanOptions = arsPlanList.map((plan: ArsPlan) => ({ id: plan.arsPlansId, name: plan.arsPlansName }));
+    const patientDirectionOptions = patientDirectionList.map((dir: PatientDirection) => ({ id: dir.addressId, name: `${dir.houseStreet}, ${dir.sectorName}` }));
+    const bloodOptions = bloodList.map((b: Blood) => ({ id: b.bloodId!, name: b.bloodType }));
+    const medicRecordsOptions = medicRecordsList.map((rec: MedicRecords) => ({ id: rec.recordId, name: `Cita con ${rec.patientName}` }));
+    const doctorOptions = doctorList.map((doc: Doctor) => ({ id: doc.doctorId!, name: `${doc.doctorName} ${doc.doctorLastName}` }));
+    const dateMedicOptions = dateMedicList.map((date: DateMedic) => ({ id: date.dateMedicId, name: `Cita para ${date.patientName} el ${new Date(date.dateMedicDate).toLocaleDateString()}` }));
 
     return (
         <form style={{ width: '100%' }}>
-            <Box sx={{ width: '100%', p: 0 }}>
+            <Box sx={{ width: '100%', p: 3 }}>
                 <FormSection>
                     <SectionHeader>
                         <PersonIcon />

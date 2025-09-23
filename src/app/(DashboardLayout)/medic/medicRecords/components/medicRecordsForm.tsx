@@ -45,12 +45,13 @@ const MedicRecordsForm = () => {
                     fullWidth
                 />
             </Grid>
-            <Grid size={{ xs: 12, md: 6 }}>
+            <Grid size={{ xs: 12 }}>
                 <TextFieldApp
                     name="signsMedicRecord"
                     label="Signos"
                     control={control}
                     fullWidth
+                    multiline
                 />
             </Grid>
         </Grid>

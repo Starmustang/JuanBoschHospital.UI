@@ -44,3 +44,7 @@ export interface PatientPost {
     patientDoctorId: number,
     dateMedicId: number
 }
+
+export interface PatientPut extends PatientPost {
+    patientId: number;
+}

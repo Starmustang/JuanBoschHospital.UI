@@ -13,3 +13,7 @@ export interface MedicRecordsPost {
     followUpMedicRecord: string,      
     signsMedicRecord: string
 }
+
+export interface MedicRecordsPut extends MedicRecordsPost {
+    recordId: number;
+}

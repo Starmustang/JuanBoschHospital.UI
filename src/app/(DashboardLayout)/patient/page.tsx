@@ -11,7 +11,7 @@ const PatientPage = () => {
     return (
         <PageContainer title="Paciente">
             <DashboardCard title="Paciente" action={
-                <Button variant="contained" onClick={handleOpenPatientModal} sx={{mb: 2}}>Registrar paciente</Button>
+                <Button variant="contained" onClick={() => handleOpenPatientModal()} sx={{mb: 2}}>Registrar paciente</Button>
             }>
                 <>
                 
