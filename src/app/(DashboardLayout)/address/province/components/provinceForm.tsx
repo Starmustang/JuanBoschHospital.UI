@@ -2,10 +2,10 @@
 import { Grid2 as Grid } from "@mui/material";
 import TextFieldApp from "@/app/components/textfieldApp/textfieldApp";
 import AutocompleteApp from "@/app/components/autocomplete/autocompleteApp";
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { useMainStore } from "@/app/store";
 const ProvinceForm = () => {
-    const { control } = useForm();
+    const { control } = useFormContext();
     const { countryList } = useMainStore();
     return (
         <Grid container spacing={2}>
