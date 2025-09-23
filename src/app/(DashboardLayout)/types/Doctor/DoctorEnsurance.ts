@@ -11,3 +11,10 @@ export interface DoctorEnsurancePost {
     arsEnsuranceId: number,
     medicCode: string
 }
+
+export interface DoctorEnsurancePut {
+    doctorEnsuranceId: number,
+    doctorId: number,
+    arsEnsuranceId: number,
+    medicCode: string
+}
