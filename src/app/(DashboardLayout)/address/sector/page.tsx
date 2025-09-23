@@ -11,7 +11,7 @@ const SectorPage = () => {
     const { handleOpenSectorModal } = useMainStore();
     return <PageContainer title="Sector">
         <DashboardCard title="Sector" action={
-            <Button variant="contained" onClick={handleOpenSectorModal}>
+            <Button variant="contained" onClick={() => handleOpenSectorModal()}>
                 Agregar sector
             </Button>
         }>
