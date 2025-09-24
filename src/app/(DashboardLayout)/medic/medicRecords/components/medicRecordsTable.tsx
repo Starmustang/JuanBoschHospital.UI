@@ -5,12 +5,11 @@ import { useTableWithSearch } from "@/app/components/usetableWithUser/useTableWi
 import TableApp from "@/app/components/tableApp/tableApp";
 import { useMainStore } from "@/app/store";
 import DeleteEntityModal from "@/app/components/modals/deleteModal";
-import { IconButton } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+import TableActions from "@/app/components/tableApp/tableActions";
+import { useEffect } from "react";
 
 const MedicRecordsTable = () => {
-    const { medicRecordsList, handleOpenMedicRecordsModal, handleOpenDeleteMedicRecordModal, showDeleteMedicRecordModal, handleCloseDeleteMedicRecordModal, medicRecordId, deleteMedicRecord } = useMainStore();
+    const { medicRecordsList, handleOpenMedicRecordsModal, handleOpenDeleteMedicRecordModal, showDeleteMedicRecordModal, handleCloseDeleteMedicRecordModal, medicRecordId, deleteMedicRecord, getMedicRecordsList } = useMainStore();
     const columnHelper = createColumnHelper<MedicRecords>();
 
     const handleDelete = () => {
@@ -19,6 +18,10 @@ const MedicRecordsTable = () => {
         }
         handleCloseDeleteMedicRecordModal();
     };
+
+    useEffect(() => {
+        getMedicRecordsList();
+    }, [getMedicRecordsList]);
 
     const columns = [
         columnHelper.accessor("patientName", {
@@ -36,15 +39,11 @@ const MedicRecordsTable = () => {
         columnHelper.display({
             id: 'actions',
             header: 'Acciones',
-            cell: (info) => (
-                <Box>
-                    <IconButton onClick={() => handleOpenMedicRecordsModal(info.row.original.recordId)}>
-                        <EditIcon />
-                    </IconButton>
-                    <IconButton onClick={() => handleOpenDeleteMedicRecordModal(info.row.original.recordId)}>
-                        <DeleteIcon />
-                    </IconButton>
-                </Box>
+            cell: ({ row }) => (
+                <TableActions
+                    onEdit={() => handleOpenMedicRecordsModal(row.original.recordId)}
+                    onDelete={() => handleOpenDeleteMedicRecordModal(row.original.recordId)}
+                />
             ),
         }),
     ];
@@ -54,6 +53,8 @@ const MedicRecordsTable = () => {
         columns,
         columnsToSearch: ["patientName", "followUpMedicRecord"],
     });
+
+    
 
     return (
         <Box>

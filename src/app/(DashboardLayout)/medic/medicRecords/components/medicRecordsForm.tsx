@@ -4,10 +4,16 @@ import { useFormContext } from "react-hook-form";
 import AutocompleteApp from "@/app/components/autocomplete/autocompleteApp";
 import TextFieldApp from "@/app/components/textfieldApp/textfieldApp";
 import { useMainStore } from "@/app/store";
+import { useEffect } from "react";
 
 const MedicRecordsForm = () => {
     const { control } = useFormContext();
-    const { patientList, doctorList } = useMainStore();
+    const { patientList, doctorList, getPatientList, getDoctorList } = useMainStore();
+
+    useEffect(() => {
+        getPatientList();
+        getDoctorList();
+    }, [getPatientList, getDoctorList]);
 
     const patientOptions = patientList.map(patient => ({
         id: patient.patientId!,

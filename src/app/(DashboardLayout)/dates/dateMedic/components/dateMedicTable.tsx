@@ -7,7 +7,7 @@ import TableApp from "@/app/components/tableApp/tableApp";
 import React, { useEffect, useMemo, useState } from "react";
 import TableActions from '@/app/components/tableApp/tableActions';
 import DeleteEntityModal from '@/app/components/modal/DeleteEntityModal';
-import formatedDate from "@/utils/function/formatedDate";
+import formatedDate from '@/utils/function/formatedDate';
 
 const columnHelper = createColumnHelper<DateMedic>();
 const DateMedicTable = () => {
@@ -16,13 +16,20 @@ const DateMedicTable = () => {
     useEffect(() => {
         getDateMedicList();
     }, [getDateMedicList]);
+
+    const consultationTypeMap: { [key: number]: string } = {
+        0: 'Primera Consulta',
+        1: 'Seguimiento',
+        2: 'Consulta de Procedimiento',
+        3: 'Otros',
+    };
     const [columnFilters, setColumnFilters] = React.useState<any>([]);
         const columns = useMemo(() => [
         columnHelper.accessor('patientName', {
             header: 'Nombre',
             cell: (info) => (
                 <Typography>
-                {info.getValue()},
+                {info.getValue()}
                 </Typography>
             ),
         }),
@@ -30,7 +37,7 @@ const DateMedicTable = () => {
             header: 'Doctor',
             cell: (info) => (
                 <Typography>
-                {info.getValue()},
+                {info.getValue()}
                 </Typography>
             ),
         }),
@@ -38,15 +45,15 @@ const DateMedicTable = () => {
             header: 'Fecha',
             cell: (info) => (
                 <Typography>
-                {formatedDate(info.getValue())},
+                {formatedDate(info.getValue())}
                 </Typography>
             ),
         }),
         columnHelper.accessor('hospitalMedicDate', {
-            header: 'Fecha Hospital',
+            header: 'Fecha de ingreso hospitalario',
             cell: (info) => (
                 <Typography>
-                {formatedDate(info.getValue())},
+                {formatedDate(info.getValue())}
                 </Typography>
             ),
         }),
@@ -54,7 +61,7 @@ const DateMedicTable = () => {
             header: 'Tipo Consulta',
             cell: (info) => (
                 <Typography>
-                {info.getValue()},
+                    {consultationTypeMap[info.getValue() as number] || 'Desconocido'}
                 </Typography>
             ),
         }),

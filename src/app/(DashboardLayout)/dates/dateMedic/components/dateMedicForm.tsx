@@ -8,12 +8,13 @@ import { useEffect } from "react";
 
 const DateMedicForm = () => {
     const { control } = useFormContext();
-        const { patientList, doctorList, getPatientList, getDoctorList } = useMainStore();
+        const { patientList, doctorList, getPatientList, getDoctorList, dateDoctorList, getDateDoctorList } = useMainStore();
 
         useEffect(() => {
         getPatientList();
         getDoctorList();
-    }, [getPatientList, getDoctorList]);
+        getDateDoctorList();
+    }, [getPatientList, getDoctorList, getDateDoctorList]);
 
     const patientOptions = patientList.map(patient => ({
         id: patient.patientId || 0,
@@ -31,6 +32,11 @@ const DateMedicForm = () => {
         { id: 2, name: 'Consulta de Procedimiento' },
         { id: 3, name: 'Otros' },
     ];
+
+    const dateDoctorOptions = dateDoctorList.map(dateDoctor => ({
+        id: dateDoctor.dateDoctorId || 0,
+        name: `${dateDoctor.dateDoctorNotes}`
+    }));
 
     return (
         <Grid container spacing={2}>
@@ -73,7 +79,13 @@ const DateMedicForm = () => {
                 />
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
-                            </Grid>
+                <AutocompleteApp
+                    name="dateDoctorId"
+                    label="Doctor de Cita"
+                    options={dateDoctorOptions}
+                    control={control}
+                />
+            </Grid>
         </Grid>
     );
 }

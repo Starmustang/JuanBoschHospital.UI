@@ -62,7 +62,7 @@ const PatientForm = () => {
     const arsPlanOptions = arsPlanList.map((plan: ArsPlan) => ({ id: plan.arsPlansId, name: plan.arsPlansName }));
     const patientDirectionOptions = patientDirectionList.map((dir: PatientDirection) => ({ id: dir.addressId, name: `${dir.houseStreet}, ${dir.sectorName}` }));
     const bloodOptions = bloodList.map((b: Blood) => ({ id: b.bloodId!, name: b.bloodType }));
-    const medicRecordsOptions = medicRecordsList.map((rec: MedicRecords) => ({ id: rec.recordId, name: `Cita con ${rec.patientName}` }));
+    const medicRecordsOptions = medicRecordsList.map((rec: MedicRecords) => ({ id: rec.recordId, name: `registro de ${rec.patientName}` }));
     const doctorOptions = doctorList.map((doc: Doctor) => ({ id: doc.doctorId!, name: `${doc.doctorName} ${doc.doctorLastName}` }));
     const dateMedicOptions = dateMedicList.map((date: DateMedic) => ({ id: date.dateMedicId, name: `Cita para ${date.patientName} el ${new Date(date.dateMedicDate).toLocaleDateString()}` }));
 
