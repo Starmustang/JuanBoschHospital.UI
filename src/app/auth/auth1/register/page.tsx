@@ -132,18 +132,18 @@ export default function Register() {
                       sx={{
                         marginLeft: {
                           lg: 9,
-                        },
+                        },  
                       }}
                     >
                       <AuthRegister
-                        title="Welcome to Spike Admin"
+                        title="Bienvenido al Hospital Juan Bosch"
                         subtext={
                           <Typography
                             variant="subtitle1"
                             color="textSecondary"
                             mb={1}
                           >
-                            Your Admin Dashboard
+                            Bienvenido al Hospital Juan Bosch
                           </Typography>
                         }
                         subtitle={
@@ -153,7 +153,7 @@ export default function Register() {
                               variant="h6"
                               fontWeight="400"
                             >
-                              Already have an Account?
+                              ¿Ya tienes una Cuenta?
                             </Typography>
                             <Typography
                               component={Link}
@@ -164,7 +164,7 @@ export default function Register() {
                                 color: "primary.main",
                               }}
                             >
-                              Sign In
+                              Iniciar Sesión
                             </Typography>
                           </Stack>
                         }

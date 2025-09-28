@@ -133,25 +133,19 @@ export default function Login() {
                       }}
                     >
                       <AuthLogin
-                        title="Welcome to Spike Admin"
+                        title="Hospital Juan Bosch"
                         subtext={
                           <Typography
                             variant="subtitle1"
                             color="textSecondary"
                             mb={1}
                           >
-                            Your Admin Dashboard
+                            Inicia Sesión
                           </Typography>
                         }
                         subtitle={
                           <Stack direction="row" spacing={1} mt={3}>
-                            <Typography
-                              color="textSecondary"
-                              variant="h6"
-                              fontWeight="500"
-                            >
-                              New to Spike?
-                            </Typography>
+                           
                             <Typography
                               component={Link}
                               href="/auth/auth1/register"
@@ -161,7 +155,7 @@ export default function Login() {
                                 color: "primary.main",
                               }}
                             >
-                              Create an account
+                              Crear Cuenta
                             </Typography>
                           </Stack>
                         }

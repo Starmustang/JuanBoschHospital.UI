@@ -112,34 +112,7 @@ export default function Sidebar() {
                 {/* ------------------------------------------- */}
                 <SidebarItems />
               </Scrollbar>
-              {isCollapse == "mini-sidebar" ? null : (
-                <Box px={3} py={2} m={3} bgcolor="primary.light">
-                  <Stack
-                    direction="row"
-                    gap={2}
-                    justifyContent="space-between"
-                    alignItems="center"
-                  >
-                    <Box display="flex" alignItems="center">
-                      <Avatar
-                        src={"/images/profile/user1.jpg"}
-                        sx={{ width: 45, height: 45 }}
-                      />
-                      <Box ml={2}>
-                        <Typography variant="h5">Mike</Typography>
-                        <Typography variant="subtitle1">Admin</Typography>
-                      </Box>
-                    </Box>
-                    <IconButton color="primary" href="/auth/auth1/login">
-                      <Icon
-                        icon="solar:logout-line-duotone"
-                        width={24}
-                        height={24}
-                      />
-                    </IconButton>
-                  </Stack>
-                </Box>
-              )}
+              
             </Box>
           </Drawer>
         </Box>

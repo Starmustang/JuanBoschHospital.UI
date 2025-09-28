@@ -1,184 +1,104 @@
-import React, { useState } from "react";
-import Link from "next/link";
+import React, { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Icon } from "@iconify/react";
-
-
-import { Stack } from "@mui/system";
-
-const profile = [
-  {
-    href: "/",
-    title: "My Profile",
-    subtitle: "Account Settings",
-    icon: <Icon icon="solar:wallet-2-line-duotone" width="20" height="20" />,
-    color: "primary",
-  },
-  {
-    href: "/",
-    title: "My Inbox",
-    subtitle: "Messages & Emails",
-    icon: <Icon icon="solar:shield-minimalistic-line-duotone" width="20" height="20" />,
-    color: "success",
-  },
-  {
-    href: "/",
-    title: "My Tasks",
-    subtitle: "To-do and Daily Tasks",
-    icon: <Icon icon="solar:card-2-line-duotone" width="20" height="20" />,
-    color: "error",
-  },
-];
+import { Stack } from '@mui/system';
+import { useMainStore } from '@/app/store';
+import { useRouter } from 'next/navigation';
 
 const Profile = () => {
+  const { data: session, status } = useSession();
+  const { logout } = useMainStore();
+  const router = useRouter();
+  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up("lg"));
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-  const [anchorEl2, setAnchorEl2] = useState(null);
-  const handleClick2 = (event: any) => {
-    setAnchorEl2(event.currentTarget);
+  const handleClose = () => {
+    setAnchorEl(null);
   };
-  const handleClose2 = () => {
-    setAnchorEl2(null);
+
+  const handleLogout = async () => {
+    handleClose();
+    await logout();
+    router.push('/auth/auth1/login');
   };
+
+  if (status !== 'authenticated') {
+    return null; // Don't render anything if not authenticated
+  }
 
   return (
     <Box>
       <Button
         size="large"
-        aria-label="show 11 new notifications"
+        aria-label="user profile"
         color="inherit"
-        aria-controls="msgs-menu"
+        aria-controls="profile-menu"
         aria-haspopup="true"
         sx={{
-          ...(typeof anchorEl2 === "object" && {
-            color: "primary.main",
-          }),
-          display: "flex",
+          display: 'flex',
           gap: 2,
         }}
-        onClick={handleClick2}
+        onClick={handleClick}
       >
         <Avatar
-          src={"/images/profile/user1.jpg"}
-          alt={"ProfileImg"}
-          sx={{
-            width: 45,
-            height: 45,
-          }}
+          src={"/images/profile/user1.jpg"} // Placeholder image
+          alt={session.user?.name || 'User'}
+          sx={{ width: 45, height: 45 }}
         />
-        
-        {lgUp ? <Box textAlign="left">
-          <Typography variant="h6" color="textPrimary" display="flex" alignItems="center"> Mike Nielsen</Typography>
-          <Typography variant="subtitle2" color="textSecondary"> Admin</Typography>
-        </Box> : ""}
-      </Button>
-      {/* ------------------------------------------- */}
-      {/* Message Dropdown */}
-      {/* ------------------------------------------- */}
-      <Menu
-        id="msgs-menu"
-        anchorEl={anchorEl2}
-        keepMounted
-        open={Boolean(anchorEl2)}
-        onClose={handleClose2}
-        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-        transformOrigin={{ horizontal: "right", vertical: "top" }}
-        sx={{
-          "& .MuiMenu-paper": {
-            width: "360px",
-            p: 4,
-          },
-        }}
-      >
-        <Typography variant="h5">User Profile</Typography>
-        <Stack direction="row" py={3} spacing={2} alignItems="center">
-          <Avatar
-            src={"/images/profile/user1.jpg"}
-            alt={"ProfileImg"}
-            sx={{ width: 95, height: 95 }}
-          />
-          <Box>
-            <Typography variant="h6" color="textPrimary" fontWeight={600}>
-            Mike Nielsen
+        {lgUp && (
+          <Box textAlign="left">
+            <Typography variant="h6" color="textPrimary">
+              {session.user?.name || 'User'}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-            Admin
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              color="textSecondary"
-              display="flex"
-              alignItems="center"
-              gap={1}
-            >
-              <Icon icon="solar:letter-line-duotone" width="15" height="15" />
-              info@spike.com
+              {session.user?.role || 'User'}
             </Typography>
           </Box>
-        </Stack>
-        <Divider />
-        {profile.map((profile) => (
-          <Box key={profile.title}>
-            <Box sx={{ py: 2, px: 0 }} className="hover-text-primary">
-              <Link href={profile.href}>
-                <Stack direction="row" spacing={2}>
-                  <Box
-                    minWidth="45px"
-                    height="45px"
-                    bgcolor={profile.color + ".light"}
-                    color={profile.color + ".main"}
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                  >
-
-                    {profile.icon}
-                  </Box>
-                  <Box>
-                    <Typography
-                      variant="subtitle2"
-                      fontWeight={600}
-                      color="textPrimary"
-                      className="text-hover"
-                      noWrap
-                      sx={{
-                        width: "240px",
-                      }}
-                    >
-                      {profile.title}
-                    </Typography>
-                    <Typography
-                      color="textSecondary"
-                      variant="subtitle2"
-                      sx={{
-                        width: "240px",
-                      }}
-                      noWrap
-                    >
-                      {profile.subtitle}
-                    </Typography>
-                  </Box>
-                </Stack>
-              </Link>
+        )}
+      </Button>
+      <Menu
+        id="profile-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        sx={{ '& .MuiMenu-paper': { width: '250px', p: 2 } }}
+      >
+        <Box>
+          <Stack direction="row" py={1} spacing={2} alignItems="center">
+            <Avatar
+              src={"/images/profile/user1.jpg"}
+              alt={session.user?.name || 'User'}
+              sx={{ width: 60, height: 60 }}
+            />
+            <Box>
+              <Typography variant="h6" color="textPrimary" fontWeight={600}>
+                {session.user?.name || 'User'}
+              </Typography>
+              <Typography variant="subtitle2" color="textSecondary">
+                {session.user?.role || 'User'}
+              </Typography>
             </Box>
-          </Box>
-        ))}
-        <Box mt={2}>
+          </Stack>
           <Button
-            href="/auth/auth1/login"
             variant="contained"
             color="primary"
-            component={Link}
             fullWidth
+            onClick={handleLogout}
+            sx={{ mt: 2 }}
           >
-            Log out
+            Logout
           </Button>
         </Box>
       </Menu>

@@ -3,6 +3,7 @@ import { CustomizerContextProvider } from "./context/customizerContext";
 import MyApp from "./app";
 import "./global.css";
 import { Analytics } from "@vercel/analytics/react";
+import NextAuthProvider from "./components/providers/NextAuthProvider";
 
 
 export const metadata = {
@@ -20,7 +21,7 @@ export default function RootLayout({
       <body>
         <CustomizerContextProvider>
           <MyApp>
-            {children}
+                        <NextAuthProvider>{children}</NextAuthProvider>
             <Analytics />
           </MyApp>
         </CustomizerContextProvider>

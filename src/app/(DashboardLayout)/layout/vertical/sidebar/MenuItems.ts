@@ -28,7 +28,7 @@ const Menuitems: MenuitemsType[] = [
     id: uniqueId(),
     title: "Pagina principal",
     icon: 'screencast-2-line-duotone',
-    href: "/sample-page",
+    href: "/",
     bgcolor: "primary",
   },
 
