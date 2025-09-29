@@ -22,9 +22,14 @@ const handler = NextAuth({
             password: credentials.password
           };
 
+          // Use environment variable, but ensure it ends with /
           const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5028/api/";
-          const loginUrl = `${apiBaseUrl}Account/login`;
+          const normalizedBaseUrl = apiBaseUrl.endsWith('/') ? apiBaseUrl : `${apiBaseUrl}/`;
+          const loginUrl = `${normalizedBaseUrl}Account/login`;
           
+          console.log("NextAuth: Environment check:");
+          console.log("NextAuth: NODE_ENV:", process.env.NODE_ENV);
+          console.log("NextAuth: NEXT_PUBLIC_API_BASE_URL:", process.env.NEXT_PUBLIC_API_BASE_URL);
           console.log("NextAuth: Attempting login to:", loginUrl);
           console.log("NextAuth: Login data:", { userName: loginData.userName, password: "[HIDDEN]" });
           
@@ -32,17 +37,20 @@ const handler = NextAuth({
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              "Accept": "application/json",
             },
             body: JSON.stringify(loginData),
           });
 
           console.log("NextAuth: Response status:", response.status);
           console.log("NextAuth: Response ok:", response.ok);
+          console.log("NextAuth: Response headers:", Object.fromEntries(response.headers.entries()));
 
           if (!response.ok) {
             const errorText = await response.text();
             console.error("NextAuth: Login failed with status:", response.status);
             console.error("NextAuth: Error response:", errorText);
+            console.error("NextAuth: Response URL:", response.url);
             return null;
           }
 
@@ -98,6 +106,20 @@ const handler = NextAuth({
   session: {
     strategy: "jwt",
     maxAge: 60 * 60, // 1 hour
+  },
+  debug: process.env.NODE_ENV === "development",
+  logger: {
+    error(code, metadata) {
+      console.error("NextAuth Error:", code, metadata);
+    },
+    warn(code) {
+      console.warn("NextAuth Warning:", code);
+    },
+    debug(code, metadata) {
+      if (process.env.NODE_ENV === "development") {
+        console.log("NextAuth Debug:", code, metadata);
+      }
+    },
   },
 });
 
