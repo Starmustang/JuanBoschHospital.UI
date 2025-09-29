@@ -16,14 +16,25 @@ export const createRegisterSlice: StateCreator<MainStore, [], [], RegisterSlice>
   isLoading: false,
   error: null,
   register: async (userData: RegisterRequest) => {
+    console.log('Register slice called with:', userData);
+    console.log('API URL:', url);
+    console.log('Base URL:', process.env.NEXT_PUBLIC_API_BASE_URL);
+    
     set({ isLoading: true, error: null });
     try {
-      await axiosMain.post(url, userData);
+      console.log('Making API request to:', `${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`);
+      const response = await axiosMain.post(url, userData);
+      console.log('Registration response:', response);
+      
       set({ isLoading: false });
       toast.success('Registration successful! Please log in.');
       return true;
     } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Registration failed';
+      console.error('Registration error details:', error);
+      console.error('Error response:', error.response);
+      console.error('Error message:', error.message);
+      
+      const errorMessage = error.response?.data?.message || error.message || 'Registration failed';
       set({ isLoading: false, error: errorMessage });
       toast.error(errorMessage);
       return false;
