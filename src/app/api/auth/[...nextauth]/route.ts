@@ -59,16 +59,44 @@ const handler = NextAuth({
           if (data.token) {
             const decodedToken: any = jwtDecode(data.token);
             console.log("NextAuth: Decoded token:", decodedToken);
-            
+
+            // Robust role extraction (supports multiple claim names)
+            const rawRoleClaim: any = decodedToken.role
+              ?? decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
+              ?? decodedToken.roles;
+
+            const rolesArr: string[] = Array.isArray(rawRoleClaim)
+              ? rawRoleClaim
+              : rawRoleClaim
+                ? [rawRoleClaim]
+                : [];
+
+            // Normalize roles to lowercase strings to match UI constants
+            const normalizedRoles = rolesArr
+              .filter((r) => !!r)
+              .map((r) => (typeof r === "string" ? r.toLowerCase() : String(r).toLowerCase()));
+
+            // Robust id/name extraction
+            const id = decodedToken.nameid
+              || decodedToken.sub
+              || decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]
+              || "";
+            const name = decodedToken.unique_name
+              || decodedToken.name
+              || decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
+              || "";
+            const email = decodedToken.email || name;
+
             const user = {
-              id: decodedToken.nameid,
-              email: decodedToken.unique_name,
-              name: decodedToken.unique_name,
-              role: decodedToken.role,
-              roles: Array.isArray(decodedToken.role) ? decodedToken.role : [decodedToken.role],
+              id,
+              email,
+              name,
+              role: normalizedRoles.length > 1 ? normalizedRoles : normalizedRoles[0] ?? undefined,
+              roles: normalizedRoles,
               accessToken: data.token,
             };
-            
+
+            console.log("NextAuth: Roles extracted:", normalizedRoles);
             console.log("NextAuth: Returning user:", { ...user, accessToken: "[HIDDEN]" });
             return user;
           }
