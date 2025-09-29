@@ -1,7 +1,8 @@
 import { IconButton, Stack, Tooltip } from '@mui/material';
 import React from 'react';
 import { Icon } from '@iconify/react';
-// import { useUserRole } from '@/app/hooks/useUserRole';
+import { useUserRole } from '@/app/hooks/useUserRole';
+import { hasPermission } from '@/app/utils/permissions';
 
 interface TableActionsProps {
   onView?: () => void;
@@ -13,9 +14,9 @@ interface TableActionsProps {
   showView?: boolean;
   showEdit?: boolean;
   showDelete?: boolean;
-  editRoles?: string[];
-  deleteRoles?: string[];
-  userRoles?: string[];
+  editPermissions?: string[];
+  deletePermissions?: string[];
+  viewPermissions?: string[];
 }
 
 const TableActions: React.FC<TableActionsProps> = ({
@@ -28,19 +29,27 @@ const TableActions: React.FC<TableActionsProps> = ({
   showView = true,
   showEdit = true,
   showDelete = true,
-  editRoles = [],
-  deleteRoles = [],
+  editPermissions = [],
+  deletePermissions = [],
+  viewPermissions = [],
 }) => {
-  // const { userRoles } = useUserRole();
+  const { userRoles } = useUserRole();
 
-//   const hasEditPermission = !editRoles.length || editRoles.some((role) => userRoles.includes(role));
-//   const hasDeletePermission =
-//     !deleteRoles.length || deleteRoles.some((role) => userRoles.includes(role));
+  const hasViewPermission = !viewPermissions.length || viewPermissions.some((permission) => hasPermission(userRoles, permission));
+  const hasEditPermission = !editPermissions.length || editPermissions.some((permission) => hasPermission(userRoles, permission));
+  const hasDeletePermission = !deletePermissions.length || deletePermissions.some((permission) => hasPermission(userRoles, permission));
 
   return (
     <Stack direction="row" spacing={1}>
+      {showView && onView && hasViewPermission && (
+        <Tooltip title={viewTooltip}>
+          <IconButton onClick={onView}>
+            <Icon icon="solar:eye-line-duotone" width="21" height="21" />
+          </IconButton>
+        </Tooltip>
+      )}
       
-      {showEdit && onEdit && (
+      {showEdit && onEdit && hasEditPermission && (
         <Tooltip title={editTooltip}>
           <IconButton onClick={onEdit}>
             <Icon icon="solar:pen-new-square-line-duotone" width="21" height="21" />
@@ -48,13 +57,13 @@ const TableActions: React.FC<TableActionsProps> = ({
         </Tooltip>
       )}
       
-      {/* {showDelete && hasDeletePermission && ( */}
+      {showDelete && onDelete && hasDeletePermission && (
         <Tooltip title={deleteTooltip}>
           <IconButton color="error" onClick={onDelete}>
             <Icon icon="solar:trash-bin-2-line-duotone" width="21" height="21" />
           </IconButton>
         </Tooltip>
-        {/* )} */}
+      )}
     </Stack>
   );
 };

@@ -9,6 +9,8 @@ import TableActions from "@/app/components/tableApp/tableActions";
 import DeleteEntityModal from "@/app/components/modal/DeleteEntityModal";
 import RoleAssignmentModal from "./RoleAssignmentModal";
 import { Icon } from "@iconify/react";
+import { useUserRole } from "@/app/hooks/useUserRole";
+import { PERMISSIONS } from "@/app/utils/permissions";
 
 const UserTable = () => {
     const { 
@@ -24,6 +26,8 @@ const UserTable = () => {
         showUserDeleteModal,
         showRoleModal
     } = useMainStore();
+    
+    const { canDelete } = useUserRole();
 
     useEffect(() => {
         fetchUsers();
@@ -81,7 +85,9 @@ const UserTable = () => {
                     </Tooltip>
                     <TableActions
                         showEdit={false}
+                        showDelete={canDelete}
                         onDelete={() => handleOpenUserDeleteModal(row.original.id)}
+                        deletePermissions={[PERMISSIONS.USER_DELETE]}
                     />
                 </div>
             ),

@@ -7,6 +7,7 @@ import { useMainStore } from "@/app/store";
 import React, { useEffect } from "react";
 import TableActions from "@/app/components/tableApp/tableActions";
 import DeleteEntityModal from "@/app/components/modal/DeleteEntityModal";
+import { PERMISSIONS } from "@/app/utils/permissions";
 
 const MedicEvaluationTable = () => {
     const { medicEvaluationsList, getMedicEvaluationsList, handleOpenMedicEvaluationModal, handleOpenDeleteModal, showDeleteModal, handleCloseDeleteModal, deleteMedicEvaluation, selectedMedicEvaluation } = useMainStore();
@@ -45,6 +46,8 @@ const MedicEvaluationTable = () => {
                 <TableActions
                     onEdit={() => handleOpenMedicEvaluationModal(row.original.medicEvaluationId)}
                     onDelete={() => handleOpenDeleteModal(row.original.medicEvaluationId)}
+                    editPermissions={[PERMISSIONS.MEDIC_EVALUATION_UPDATE]}
+                    deletePermissions={[PERMISSIONS.MEDIC_EVALUATION_DELETE]}
                 />
             ),
         }),

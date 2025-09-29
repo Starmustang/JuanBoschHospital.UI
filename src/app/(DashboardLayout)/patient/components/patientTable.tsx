@@ -8,9 +8,12 @@ import { useMainStore } from "@/app/store";
 import { useTableWithSearch } from "@/app/components/usetableWithUser/useTableWithUser";
 import TableActions from "@/app/components/tableApp/tableActions";
 import DeleteEntityModal from "@/app/components/modal/DeleteEntityModal";
+import { useUserRole } from "@/app/hooks/useUserRole";
+import { PERMISSIONS, hasPermission } from "@/app/utils/permissions";
 
 const PatientTable = () => {
     const { patientList, getPatientList, handleOpenPatientModal, handleOpenDeleteModal, showDeleteModal, handleCloseDeleteModal, deletePatient, selectedPatient } = useMainStore();
+    const { userRoles } = useUserRole();
 
     useEffect(() => {
         getPatientList();
@@ -42,6 +45,9 @@ const PatientTable = () => {
                 <TableActions
                     onEdit={() => handleOpenPatientModal(row.original.patientId)}
                     onDelete={() => handleOpenDeleteModal(row.original.patientId || 0)}
+                    editPermissions={[PERMISSIONS.PATIENT_UPDATE]}
+                    deletePermissions={[PERMISSIONS.PATIENT_DELETE]}
+                    showView={false}
                 />
             ),
         }),

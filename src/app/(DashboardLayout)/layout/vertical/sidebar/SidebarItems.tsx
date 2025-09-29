@@ -6,8 +6,10 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import NavItem from './NavItem';
 import NavCollapse from './NavCollapse';
 import NavGroup from './NavGroup/NavGroup';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { CustomizerContext } from '@/app/context/customizerContext';
+import { useUserRole } from '@/app/hooks/useUserRole';
+import { filterMenuItemsByRole } from '@/app/utils/menuUtils';
 
 
 const SidebarItems = () => {
@@ -15,15 +17,21 @@ const SidebarItems = () => {
   const pathDirect = pathname;
   const pathWithoutLastPart = pathname.slice(0, pathname.lastIndexOf('/'));
   const { isSidebarHover, isCollapse, isMobileSidebar, setIsMobileSidebar } = useContext(CustomizerContext);
+  const { userRoles } = useUserRole();
 
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
   const hideMenu: any = lgUp ? isCollapse == "mini-sidebar" && !isSidebarHover : '';
+
+  // Filter menu items based on user roles
+  const filteredMenuItems = useMemo(() => {
+    return filterMenuItemsByRole(Menuitems, userRoles);
+  }, [userRoles]);
 
 
   return (
     <Box sx={{ px: "20px" }}>
       <List sx={{ pt: 0 }} className="sidebarNav">
-        {Menuitems.map((item) => {
+        {filteredMenuItems.map((item) => {
           // {/********SubHeader**********/}
           if (item.subheader) {
             return <NavGroup item={item} hideMenu={hideMenu} key={item.subheader} />;

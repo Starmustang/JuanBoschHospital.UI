@@ -1,4 +1,5 @@
 import { uniqueId } from "lodash";
+import { PERMISSIONS, ROLES } from "@/app/utils/permissions";
 interface MenuitemsType {
   [x: string]: any;
   id?: string;
@@ -13,6 +14,8 @@ interface MenuitemsType {
   chipColor?: string;
   variant?: string;
   external?: boolean;
+  permissions?: string[]; // Required permissions to access this menu item
+  roles?: string[]; // Required roles to access this menu item
 }
 
 // import { useTheme } from '@mui/material';
@@ -38,16 +41,19 @@ const Menuitems: MenuitemsType[] = [
     icon: 'stethoscope-outline',    
     bgcolor: "primary",
     href: "/doctor",
+    roles: [ROLES.ADMIN], // Only admin can access doctor management
     children: [
       {
         id: uniqueId(),
         title: "Doctores",
         href: "/doctor",
+        roles: [ROLES.ADMIN],
       },
       {
         id: uniqueId(),
         title: "Seguro de doctor",
         href: "/doctor/doctorEnsurance",
+        roles: [ROLES.ADMIN],
       }
     ]
   },
@@ -58,16 +64,19 @@ const Menuitems: MenuitemsType[] = [
     icon: 'user-hand-up-outline',    
     bgcolor: "primary",
     href: "/patient",
+    roles: [ROLES.ADMIN, ROLES.USER, ROLES.AUXILIAR], // Admin, usuario, and auxiliar can access patients
     children: [
       {
         id: uniqueId(),
         title: "Pacientes",
         href: "/patient",
+        roles: [ROLES.ADMIN, ROLES.USER, ROLES.AUXILIAR],
       },
       {
         id: uniqueId(),
         title: "Direcciones",
         href: "/patient/patientDirection",
+        roles: [ROLES.ADMIN, ROLES.USER, ROLES.AUXILIAR],
       }
     ]
   },
@@ -78,6 +87,7 @@ const Menuitems: MenuitemsType[] = [
     icon: 'dropper-minimalistic-line-duotone',    
     bgcolor: "primary",
     href: "/blood",
+    roles: [ROLES.ADMIN], // Only admin can access blood management
   },
 
   {
@@ -86,6 +96,7 @@ const Menuitems: MenuitemsType[] = [
     icon: 'users-group-rounded-line-duotone',    
     bgcolor: "primary",
     href: "/users",
+    roles: [ROLES.ADMIN], // Only admins can access user management
   },
 
   {
@@ -94,6 +105,7 @@ const Menuitems: MenuitemsType[] = [
     icon: 'book-2-outline',    
     bgcolor: "primary",
     href: "/medic/medicEvaluation",
+    roles: [ROLES.ADMIN, ROLES.USER], // Both admin and usuario can access
   },
   {
     id: uniqueId(),
@@ -101,6 +113,7 @@ const Menuitems: MenuitemsType[] = [
     icon: 'notebook-bookmark-outline',    
     bgcolor: "primary",
     href: "/medic/medicRecords",
+    roles: [ROLES.ADMIN, ROLES.USER], // Both admin and usuario can access
   },
 
   {
@@ -109,6 +122,7 @@ const Menuitems: MenuitemsType[] = [
     icon: 'global-outline',    
     bgcolor: "primary",
     href: "/province",
+    roles: [ROLES.ADMIN], // Only admin can access address management
     children: [
       {
         id: uniqueId(),
@@ -116,6 +130,7 @@ const Menuitems: MenuitemsType[] = [
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
         href: "/address/country",
+        roles: [ROLES.ADMIN],
       },
       {
         id: uniqueId(),
@@ -123,6 +138,7 @@ const Menuitems: MenuitemsType[] = [
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
         href: "/address/province",
+        roles: [ROLES.ADMIN],
       },
       {
         id: uniqueId(),
@@ -130,6 +146,7 @@ const Menuitems: MenuitemsType[] = [
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
         href: "/address/municipality",
+        roles: [ROLES.ADMIN],
       },
       {
         id: uniqueId(),
@@ -137,6 +154,7 @@ const Menuitems: MenuitemsType[] = [
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
         href: "/address/sector",
+        roles: [ROLES.ADMIN],
       },
       {
         id: uniqueId(),
@@ -144,6 +162,7 @@ const Menuitems: MenuitemsType[] = [
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
         href: "/address/doctorAddress",
+        roles: [ROLES.ADMIN],
       },
     ]
   },
@@ -153,6 +172,7 @@ const Menuitems: MenuitemsType[] = [
     icon: 'calendar-date-outline',    
     bgcolor: "primary",
     href: "/dates/dateMedic",
+    roles: [ROLES.ADMIN], // Only admin can access appointment management
     children: [
       {
         id: uniqueId(),
@@ -160,6 +180,7 @@ const Menuitems: MenuitemsType[] = [
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
         href: "/dates/dateMedic",
+        roles: [ROLES.ADMIN],
       },
       {
         id: uniqueId(),
@@ -167,6 +188,7 @@ const Menuitems: MenuitemsType[] = [
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
         href: "/dates/dateDoctor",
+        roles: [ROLES.ADMIN],
       },
     ]
   },
@@ -176,6 +198,7 @@ const Menuitems: MenuitemsType[] = [
     icon: 'medical-kit-outline',    
     bgcolor: "primary",
     href: "/ars/arsPlan",
+    roles: [ROLES.ADMIN], // Only admin can access ARS/insurance management
     children: [
       {
         id: uniqueId(),
@@ -183,6 +206,7 @@ const Menuitems: MenuitemsType[] = [
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
         href: "/ars/arsPlan",
+        roles: [ROLES.ADMIN],
       },
       {
         id: uniqueId(),
@@ -190,6 +214,7 @@ const Menuitems: MenuitemsType[] = [
         icon: 'screencast-2-line-duotone',    
         bgcolor: "primary",
         href: "/ars/arsEnsurance",
+        roles: [ROLES.ADMIN],
       },
     ]
   },
