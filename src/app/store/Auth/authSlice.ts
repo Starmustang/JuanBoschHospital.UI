@@ -31,24 +31,22 @@ export const createAuthSlice: StateCreator<MainStore, [], [], AuthSlice> = (set,
     login: async (credentials: LoginRequest) => {
       set({ isLoading: true, error: null });
       try {
-        const result = await signIn('credentials', {
+        // Respect callbackUrl provided by middleware
+        const callbackUrl = (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('callbackUrl')) || '/';
+
+        // Let NextAuth handle redirect so cookies are set before navigation (avoids middleware bounce)
+        await signIn('credentials', {
           ...credentials,
-          redirect: false,
+          redirect: true,
+          callbackUrl,
         });
 
-        if (result?.error) {
-          throw new Error(result.error);
-        }
-
-        if (!result?.ok) {
-          throw new Error('Login failed. Please check your credentials.');
-        }
-
+        // Execution may not continue past redirect
         set({ isLoading: false, isAuthenticated: true });
         toast.success('Login successful');
         return true;
       } catch (error: any) {
-        const errorMessage = error.message || 'Login failed';
+        const errorMessage = error?.message || 'Login failed';
         set({
           isLoading: false,
           error: errorMessage,
