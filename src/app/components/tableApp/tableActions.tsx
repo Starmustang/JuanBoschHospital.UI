@@ -40,13 +40,13 @@ const TableActions: React.FC<TableActionsProps> = ({
   return (
     <Stack direction="row" spacing={1}>
       
-      {/* {showEdit && hasEditPermission && ( */}
+      {showEdit && onEdit && (
         <Tooltip title={editTooltip}>
           <IconButton onClick={onEdit}>
             <Icon icon="solar:pen-new-square-line-duotone" width="21" height="21" />
           </IconButton>
         </Tooltip>
-      {/* )} */}
+      )}
       
       {/* {showDelete && hasDeletePermission && ( */}
         <Tooltip title={deleteTooltip}>

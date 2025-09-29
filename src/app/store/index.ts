@@ -18,6 +18,7 @@ import { createMedicEvaluationSlice, MedicEvaluationSlice } from "./Medic/medicE
 import { createPatientDirectionSlice, PatientDirectionSlice } from "./patient/patientDirectionSlice";
 import { createAuthSlice, AuthSlice } from "./Auth/authSlice";
 import { createRegisterSlice, RegisterSlice } from "./Auth/registerSlice";
+import { createUserSlice, UserSlice } from "./Users/userSlice";
 
 export type MainStore = PatientSlice &
   CountrySlice &
@@ -36,7 +37,8 @@ export type MainStore = PatientSlice &
   PatientDirectionSlice &
   ArsPlanSlice &
   AuthSlice &
-  RegisterSlice;
+  RegisterSlice &
+  UserSlice;
 
 export const useMainStore = create(
   devtools<MainStore>(
@@ -59,6 +61,7 @@ export const useMainStore = create(
       ...createMunicipalitySlice(set, get, store),
       ...createAuthSlice(set, get, store),
       ...createRegisterSlice(set, get, store),
+      ...createUserSlice(set, get, store),
     }),
     { name: "MainStore" }
   )

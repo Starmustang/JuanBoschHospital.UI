@@ -79,7 +79,14 @@ const Menuitems: MenuitemsType[] = [
     bgcolor: "primary",
     href: "/blood",
   },
-  
+
+  {
+    id: uniqueId(),
+    title: "Usuarios",
+    icon: 'users-group-rounded-line-duotone',    
+    bgcolor: "primary",
+    href: "/users",
+  },
 
   {
     id: uniqueId(),
